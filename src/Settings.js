@@ -10,5 +10,9 @@ export default {
 	/**
 	 * 是否固定头部
 	 */
-	fixedHeader: false
+	fixedHeader: false,
+	// 加密 key
+	aesKey: '',
+	// 加密 iv
+	aesIv: ''
 }
