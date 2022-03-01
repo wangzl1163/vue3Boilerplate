@@ -129,7 +129,7 @@ function filterAsyncRouter(asyncRouterMap) {
 }
 
 export const loadView = (moduleCode) => { // 路由懒加载
-   return mapComponents[moduleCode]
+   return MapComponents[moduleCode]
 }
 
 export { permission }
