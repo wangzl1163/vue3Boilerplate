@@ -14,11 +14,8 @@ function getCookie(name) {
 
 // 创建axios实例
 const http = axios.create({
-   baseURL: '/ops/api/v1', // api的base_url
+   baseURL: '/api', // api的base_url
    timeout: 60000, // 请求超时时间
-   headers: {
-      'x-csrf-token': getCookie('csrfToken')
-   }
 })
 
 // 请求拦截器
