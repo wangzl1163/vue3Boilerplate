@@ -1,22 +1,22 @@
-import { SET_TOKEN } from '../MutationTypes'
+import { SET_TOKEN } from "../MutationTypes";
 
 export const token = {
    state: {
-      token: ''
+      token: ""
    },
    mutations: {
-      [SET_TOKEN] (state, token) {
-         state.token = token
+      [SET_TOKEN](state, token) {
+         state.token = token;
       }
    },
    actions: {
-      storeToken ({ commit }, token) {
-         commit(SET_TOKEN, token)
+      StoreToken({ commit }, token) {
+         commit(SET_TOKEN, token);
       }
    },
    getters: {
       token: (state) => {
-         return state.token
+         return state.token;
       }
    }
-}
+};

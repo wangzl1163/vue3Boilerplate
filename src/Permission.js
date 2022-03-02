@@ -17,7 +17,7 @@ router.beforeEach(async (to, from, next) => {
    // to.query.token && store.dispatch('storeToken', to.query.token);
    // 从saas过来的要覆盖用户信息
    if (to.query.token) {
-      store.dispatch("storeToken", to.query.token);
+      store.dispatch("StoreToken", to.query.token);
       return store
          .dispatch("GetUserInfo")
          .then(() => {
