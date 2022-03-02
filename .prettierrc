@@ -1,4 +1,5 @@
 {
    "tabWidth": 3,
-   "endOfLine": "auto"
+   "endOfLine": "auto",
+   "trailingComma": "none"
 }
