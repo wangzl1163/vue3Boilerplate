@@ -1,0 +1,34 @@
+/*
+ * @Description  :
+ * @Author       : 王占领
+ * @Date         : 2022-03-01 18:13:55
+ * @LastEditTime : 2022-03-01 18:15:18
+ * @LastEditors  : 王占领
+ */
+
+module.exports = {
+	env: {
+		browser: true,
+		node: true,
+		es2022: true
+	},
+	extends: ['eslint:recommended', 'prettier'],
+	plugins: ['@babel'],
+	parser: 'vue-eslint-parser',
+	parserOptions: {
+		sourceType: 'module',
+		ecmaVersion: 'latest',
+		ecmaFeatures: {
+			jsx: true
+		}
+	},
+   globals: {
+      // 指定全局变量，用以避免报no-undef错误
+      defineProps: "writable",
+      defineEmits: "writable"
+   },
+	rules: {
+		indent: ['error', 3],
+		'no-tabs': ['error', { allowIndentationTabs: true }]
+	}
+}
