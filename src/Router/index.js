@@ -5,7 +5,7 @@
  * @LastEditTime : 2022-02-23 18:09:39
  * @LastEditors  : 王占领
  */
-import { createRouter, createWebHistory,createWebHashHistory } from 'vue-router';
+import { createRouter, createWebHistory } from 'vue-router';
 import routes from './Modules';
 
 const router = createRouter({
