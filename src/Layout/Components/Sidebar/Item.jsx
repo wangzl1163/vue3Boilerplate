@@ -13,8 +13,8 @@ export default defineComponent({
          default: ''
       }
    },
-   render (h, context) {
-      const { icon, title } = context.props
+   render () {
+      const { icon, title } = this.$props
       const vNodes = []
 
       if (icon) {

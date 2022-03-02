@@ -25,7 +25,6 @@
 </template>
 
 <script>
-import path from 'path'
 import { isExternal } from '@/Utils/Validate'
 import Item from './Item.jsx'
 import AppLink from './Link.vue'
@@ -83,10 +82,12 @@ export default {
          if (isExternal(routePath)) {
             return routePath
          }
+         
          if (isExternal(this.basePath)) {
             return this.basePath
          }
-         return path.resolve(this.basePath, routePath)
+
+         return routePath.includes(this.basePath) ? routePath : this.basePath + '/' + routePath
       }
    }
 }
