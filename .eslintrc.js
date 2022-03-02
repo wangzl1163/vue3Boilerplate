@@ -13,7 +13,7 @@ module.exports = {
 		es2022: true
 	},
 	extends: ['eslint:recommended', 'prettier'],
-	plugins: ['prettier'],
+	plugins: [],
 	parser: 'vue-eslint-parser',
 	parserOptions: {
 		sourceType: 'module',
@@ -28,13 +28,6 @@ module.exports = {
 		defineEmits: 'writable'
 	},
 	rules: {
-		'no-tabs': ['error', { allowIndentationTabs: true }],
-		'prettier/prettier': [
-			'error',
-			{
-				tabWidth: 3,
-				endOfLine: 'auto'
-			}
-		]
+		'no-tabs': ['error', { allowIndentationTabs: true }]
 	}
 }
