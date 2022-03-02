@@ -13,7 +13,7 @@ module.exports = {
 		es2022: true
 	},
 	extends: ['eslint:recommended', 'prettier'],
-	plugins: ['@babel'],
+	plugins: ['prettier'],
 	parser: 'vue-eslint-parser',
 	parserOptions: {
 		sourceType: 'module',
@@ -22,13 +22,19 @@ module.exports = {
 			jsx: true
 		}
 	},
-   globals: {
-      // 指定全局变量，用以避免报no-undef错误
-      defineProps: "writable",
-      defineEmits: "writable"
-   },
+	globals: {
+		// 指定全局变量，用以避免报no-undef错误
+		defineProps: 'writable',
+		defineEmits: 'writable'
+	},
 	rules: {
-		indent: ['error', 3],
-		'no-tabs': ['error', { allowIndentationTabs: true }]
+		'no-tabs': ['error', { allowIndentationTabs: true }],
+		'prettier/prettier': [
+			'error',
+			{
+				tabWidth: 3,
+				endOfLine: 'auto'
+			}
+		]
 	}
 }
