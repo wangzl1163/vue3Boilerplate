@@ -1,5 +1,4 @@
 import { defineComponent } from 'vue';
-import {SvgIcon} from '@/Components/index.js';
 
 export default defineComponent({
    name: 'MenuItem',
