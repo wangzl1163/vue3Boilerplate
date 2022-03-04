@@ -7,8 +7,8 @@
             :collapse="isCollapse"
             :background-color="variables.menuBg"
             :text-color="variables.menuText"
+            :active-text-color="variables.menuActiveText"
             :unique-opened="true"
-            :active-text-color="theme"
             :collapse-transition="false"
             mode="vertical"
          >
@@ -33,7 +33,7 @@ export default {
    name: "Sidebar",
    components: { SidebarItem, Logo },
    computed: {
-      ...mapGetters(["permissionRoutes", "sidebar", "theme"]),
+      ...mapGetters(["permissionRoutes", "sidebar"]),
       activeMenu() {
          const route = this.$route;
          const { meta, path } = route;
