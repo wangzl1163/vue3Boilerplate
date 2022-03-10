@@ -1,26 +1,26 @@
 /*
  * @Description  : components 入口
- * @Author       : 
+ * @Author       :
  * @Date         : 2022-02-22 13:53:15
  * @LastEditTime : 2022-02-25 14:01:06
- * @LastEditors  : 
+ * @LastEditors  :
  */
-import SvgIcon from './SvgIcon/index.vue'
+import SvgIcon from "./SvgIcon/index.vue";
+import Page from "./Page/index.vue";
 
 // common组件用于全局注册
 const common = {
-   SvgIcon
-}
+   SvgIcon,
+   Page
+};
 
 export default {
-   install(app){
-      Object.entries(common).forEach(entry=> {
-         app.component(entry[0], entry[1])
-      })
+   install(app) {
+      Object.entries(common).forEach((entry) => {
+         app.component(entry[0], entry[1]);
+      });
    }
-}
+};
 
 // 所有组件
-export {
-   SvgIcon
-}
+export { SvgIcon, Page };
