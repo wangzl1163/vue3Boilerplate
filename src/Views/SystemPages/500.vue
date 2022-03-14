@@ -1,4 +1,4 @@
-<template functional>
+<template>
    <el-row class="error-layout">
       <el-row>
          <i class="error-icon" type="icon-500"></i>
@@ -6,14 +6,12 @@
       <el-row class="error-code">
          <b>500</b>
       </el-row>
-      <el-row class="error-message">
-         抱歉，服务器发生错误！
-      </el-row>
+      <el-row class="error-message"> 抱歉，服务器发生错误！ </el-row>
    </el-row>
 </template>
 
 <script>
-export default {}
+export default {};
 </script>
 
 <style lang="less">

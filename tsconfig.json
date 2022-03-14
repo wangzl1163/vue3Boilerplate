@@ -15,7 +15,9 @@
     "baseUrl": "./",
     "paths": {
       "@/*": ["src/*"]
-    }
+    },
+    "skipLibCheck": true,
+    "types": ["element-plus/global"]
   },
   "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "src/Components/Layout/Components/Sidebar/Item.jsx"],
   "references": [{ "path": "./tsconfig.node.json" }]
