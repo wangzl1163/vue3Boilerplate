@@ -108,7 +108,7 @@ const computedRightSpan = computed(() => {
 .page {
    border: none;
 
-   .el-card__body {
+   & > .el-card__body {
       background-color: @color-primary-light-2;
    }
 }
