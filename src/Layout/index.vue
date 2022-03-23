@@ -23,6 +23,7 @@
 import { AppMain, Navbar, Sidebar, TagsView } from "./Components";
 import ResizeMixin from "./Mixin/ResizeHandler";
 import { mapState, mapGetters } from "vuex";
+import request from "@/Utils/HttpRequest";
 
 export default {
    name: "Layout",
@@ -52,6 +53,12 @@ export default {
       handleClickOutside() {
          this.$store.dispatch("closeSideBar", { withoutAnimation: false });
       }
+   },
+   beforeRouteLeave() {
+      request.$abort();
+   },
+   beforeRouteUpdate() {
+      request.$abort();
    }
 };
 </script>

@@ -5,6 +5,7 @@ import loadingBar from "@/Plugins/LoadingBar/Index.js";
 
 let hideError = false;
 let queue401 = [];
+let controller = new AbortController();
 
 function getCookie(name) {
    var arr,
@@ -22,6 +23,9 @@ const http = axios.create({
 // 请求拦截器
 http.interceptors.request.use(
    (config) => {
+      // 设置请求可取消
+      config.signal = controller.signal;
+
       if (!config.headers.noLoading) {
          loadingBar.start();
       }
@@ -93,7 +97,8 @@ http.interceptors.response.use(
       }
    },
    (err) => {
-      if (hideError) {
+      // 主动取消请求，不做提示
+      if (hideError || err.message === "canceled") {
          loadingBar.error();
       } else {
          loadingBar.finish();
@@ -267,6 +272,14 @@ class Request {
 
    $delete(url, options = {}) {
       return this.$ajax(url, {}, { type: "DELETE", options: options });
+   }
+
+   $abort() {
+      // 取消尚未完成的请求
+      controller.abort();
+
+      // 重置 controller 防止新请求无法发出
+      controller = new AbortController();
    }
 }
 
