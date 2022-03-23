@@ -1,14 +1,5 @@
 <template>
-   <el-card
-      class="page"
-      shadow="never"
-      :body-style="{
-         paddingTop: '16px',
-         paddingBottom: '16px',
-         paddingLeft: '16px',
-         paddingRight: '16px'
-      }"
-   >
+   <el-card class="page" shadow="never" :body-style="style">
       <el-row :gutter="gutter" :justify="justify" :align="align">
          <el-col
             v-if="$slots.pageLeft"
@@ -39,6 +30,8 @@ export default {
 </script>
 <script setup>
 import { computed, useSlots } from "vue";
+import styleVariables from "@/Assets/Style/Variables.module.less";
+
 const slots = useSlots();
 const props = defineProps({
    gutter: {
@@ -70,6 +63,10 @@ const props = defineProps({
          lg: 18,
          xl: 20
       })
+   },
+   bodyStyle: {
+      type: Object,
+      default: () => undefined
    }
 });
 
@@ -101,15 +98,21 @@ const computedRightSpan = computed(() => {
       ...props.rightSpan
    };
 });
+
+const style = computed(() => {
+   return {
+      paddingTop: "16px",
+      paddingBottom: "16px",
+      paddingLeft: "16px",
+      paddingRight: "16px",
+      backgroundColor: styleVariables.colorPrimaryLight2,
+      ...props.bodyStyle
+   };
+});
 </script>
 
 <style lang="less">
-@import "@/Assets/Style/Variables.module.less";
 .page {
    border: none;
-
-   & > .el-card__body {
-      background-color: @color-primary-light-2;
-   }
 }
 </style>
