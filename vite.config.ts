@@ -62,3 +62,10 @@ export default defineConfig({
       }
    }
 });
+
+// 注册全局环境变量
+import randomKey from "./src/Utils/RandomKey";
+import.meta.env = {
+   AESKEY: randomKey.getKey(64),
+   AESIV: randomKey.getKey(32)
+};
