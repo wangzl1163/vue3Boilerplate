@@ -1,5 +1,10 @@
 <template>
    <el-card class="page" shadow="never" :body-style="style">
+      <template #header v-if="$slots.header">
+         <div :style="computedHeaderStyle">
+            <slot name="header"></slot>
+         </div>
+      </template>
       <el-row :gutter="gutter" :justify="justify" :align="align">
          <el-col
             v-if="$slots.pageLeft"
@@ -67,6 +72,10 @@ const props = defineProps({
    bodyStyle: {
       type: Object,
       default: () => undefined
+   },
+   headerStyle: {
+      type: Object,
+      default: () => undefined
    }
 });
 
@@ -109,10 +118,22 @@ const style = computed(() => {
       ...props.bodyStyle
    };
 });
+const computedHeaderStyle = computed(() => {
+   return {
+      paddingTop: "16px",
+      paddingBottom: "16px",
+      paddingLeft: "16px",
+      paddingRight: "16px",
+      ...props.headerStyle
+   };
+});
 </script>
 
 <style lang="less">
 .page {
    border: none;
+   .el-card__header {
+      padding: 0;
+   }
 }
 </style>
