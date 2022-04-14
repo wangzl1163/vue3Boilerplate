@@ -1,10 +1,3 @@
-<!--
- * @Description  : 
- * @Author       : 王占领
- * @Date         : 2022-02-23 15:17:30
- * @LastEditTime : 2022-02-23 16:48:41
- * @LastEditors  : 王占领
--->
 <template>
    <transition name="fade">
       <div :class="classes" :style="outerStyles" v-show="show">
@@ -13,68 +6,69 @@
    </transition>
 </template>
 <script>
-
-const prefixCls = 'loading-bar'
+const prefixCls = "loading-bar";
 
 export default {
-   name: 'LoadingBar',
+   name: "LoadingBar",
    props: {
       color: {
          type: String,
-         default: 'primary'
+         default: "primary"
       },
       failedColor: {
          type: String,
-         default: 'error'
+         default: "error"
       },
       height: {
          type: Number,
          default: 4
       }
    },
-   data () {
+   data() {
       return {
          percent: 0,
-         status: 'success',
+         status: "success",
          show: false
-      }
+      };
    },
    computed: {
-      classes () {
-         return `${prefixCls}`
+      classes() {
+         return `${prefixCls}`;
       },
-      innerClasses () {
+      innerClasses() {
          return [
             `${prefixCls}-inner`,
             {
-               [`${prefixCls}-inner-color-primary`]: this.color === 'primary' && this.status === 'success',
-               [`${prefixCls}-inner-failed-color-error`]: this.failedColor === 'error' && this.status === 'error'
+               [`${prefixCls}-inner-color-primary`]:
+                  this.color === "primary" && this.status === "success",
+               [`${prefixCls}-inner-failed-color-error`]:
+                  this.failedColor === "error" && this.status === "error"
             }
-         ]
+         ];
       },
-      outerStyles () {
+      outerStyles() {
          return {
             height: `${this.height}px`
-         }
+         };
       },
-      styles () {
+      styles() {
          const style = {
             width: `${this.percent}%`,
             height: `${this.height}px`
+         };
+
+         if (this.color !== "primary" && this.status === "success") {
+            style.backgroundColor = this.color;
          }
 
-         if (this.color !== 'primary' && this.status === 'success') {
-            style.backgroundColor = this.color
+         if (this.failedColor !== "error" && this.status === "error") {
+            style.backgroundColor = this.failedColor;
          }
 
-         if (this.failedColor !== 'error' && this.status === 'error') {
-            style.backgroundColor = this.failedColor
-         }
-
-         return style
+         return style;
       }
    }
-}
+};
 </script>
 
 <style lang="less">
@@ -94,7 +88,7 @@ export default {
    right: 0;
    z-index: 2100;
    .formateClass(inner,{transition:width 1s linear;});
-   .formateClass(inner-color-primary,{background-color:#45B035;});
+   .formateClass(inner-color-primary,{background-color:#45b035;});
    .formateClass(inner-failed-color-error,{background-color:#ed4014;});
 }
 </style>

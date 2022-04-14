@@ -1,11 +1,3 @@
-/*
- * @Description  :
- * @Author       : 王占领
- * @Date         : 2022-03-01 18:13:55
- * @LastEditTime : 2022-03-01 18:15:18
- * @LastEditors  : 王占领
- */
-
 module.exports = {
    env: {
       browser: true,

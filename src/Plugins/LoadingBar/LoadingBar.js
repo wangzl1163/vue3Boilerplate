@@ -1,10 +1,3 @@
-/*
- * @Description  : loading bar
- * @Author       : 王占领
- * @Date         : 2022-02-23 15:17:30
- * @LastEditTime : 2022-02-23 16:53:19
- * @LastEditors  : 王占领
- */
 import LoadingBar from "./LoadingBar.vue";
 import { createVNode, render } from "vue";
 
