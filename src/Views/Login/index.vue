@@ -6,7 +6,7 @@
          :rules="loginRules"
          class="login-form"
       >
-         <h3 class="title">大数据监控运维平台</h3>
+         <h3 class="title">{{ title }}</h3>
          <el-form-item prop="username">
             <el-input
                v-model="loginForm.username"
@@ -76,15 +76,15 @@
       </el-form>
       <!--  底部  -->
       <div class="el-login-footer">
-         <span>Copyright © 2022 千方科技 All Rights Reserved.</span>
+         <span>{{ copyright }}</span>
       </div>
    </div>
 </template>
 
 <script>
+import { mapState } from "vuex";
 import { getCodeImg } from "@/Apis/Login";
 import { encryption, decryption } from "@/Utils/AES";
-import settings from "@/Settings";
 
 export default {
    name: "Login",
@@ -112,6 +112,14 @@ export default {
          loading: false,
          redirect: undefined
       };
+   },
+   computed: {
+      ...mapState({
+         copyright: (state) => state.settings.copyright,
+         aesKey: (state) => state.settings.aesKey,
+         aesIv: (state) => state.settings.aesIv,
+         title: (state) => state.settings.title
+      })
    },
    watch: {
       $route: {
@@ -145,7 +153,7 @@ export default {
             password:
                password === undefined
                   ? this.loginForm.password
-                  : decryption(password, settings.aesKey, settings.aesIv),
+                  : decryption(password, this.aesKey, this.aesIv),
             rememberMe: rememberMe === undefined ? false : Boolean(rememberMe)
          };
       },
@@ -165,8 +173,8 @@ export default {
                            "password",
                            encryption(
                               this.loginForm.password,
-                              settings.aesKey,
-                              settings.aesIv
+                              this.aesKey,
+                              this.aesIv
                            )
                         );
                         localStorage.setItem(

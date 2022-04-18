@@ -12,7 +12,7 @@ export default {
     */
    fixedHeader: false,
    // 加密 key
-   aesKey: "",
+   aesKey: import.meta.env.AESKEY,
    // 加密 iv
-   aesIv: ""
+   aesIv: import.meta.env.AESIV
 };
