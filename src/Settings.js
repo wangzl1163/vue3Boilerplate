@@ -14,5 +14,7 @@ export default {
    // 加密 key
    aesKey: import.meta.env.AESKEY,
    // 加密 iv
-   aesIv: import.meta.env.AESIV
+   aesIv: import.meta.env.AESIV,
+   // 版权声明
+   copyright: "Copyright © 2022 **** All Rights Reserved."
 };
