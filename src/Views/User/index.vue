@@ -81,8 +81,8 @@
 
 <script>
 import { mapGetters } from "vuex";
-import userInfo from "./UserInfo";
-import resetPwd from "./ResetPwd";
+import userInfo from "./UserInfo.vue";
+import resetPwd from "./ResetPwd.vue";
 import { getUserProfile } from "@/Apis/User";
 
 export default {
