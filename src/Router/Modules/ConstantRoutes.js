@@ -37,7 +37,9 @@ export default [
             path: "/user",
             name: "user",
             component: () =>
-               import(/* webpackChunkName: "profile" */ "@/Views/User"),
+               import(
+                  /* webpackChunkName: "profile" */ "@/Views/User/index.vue"
+               ),
             meta: {
                title: "个人中心"
             }
