@@ -3,6 +3,7 @@ import vue from "@vitejs/plugin-vue";
 import vueJsx from "@vitejs/plugin-vue-jsx";
 import { createSvgIconsPlugin } from "vite-plugin-svg-icons";
 import eslintPlugin from "@nabla/vite-plugin-eslint";
+import compressionPlugin from "vite-plugin-compression";
 
 const path = require("path");
 
@@ -17,7 +18,7 @@ export default defineConfig({
       vue(),
       vueJsx({}),
       createSvgIconsPlugin({
-         // 配置路劲在你的src里的svg存放文件
+         // 配置路径在你的src里的svg存放文件
          iconDirs: [path.resolve(__dirname, "src/Assets/Icons/svg")],
          symbolId: "icon-[dir]-[name]"
       }),
@@ -26,6 +27,10 @@ export default defineConfig({
             fix: true,
             cache: false
          }
+      }),
+      compressionPlugin({
+         ext: ".gz",
+         deleteOriginFile: false
       })
    ],
    server: {
