@@ -25,6 +25,9 @@ Object.entries(ElIcons).forEach((elIcon) => {
    app.component(elIcon[0], elIcon[1]);
 });
 
+// 注入 app.config.globalProperties
+app.provide("globalProperties", app.config.globalProperties);
+
 app.use(ElementPlus, { locale: zhCn });
 app.use(BigElement);
 app.use(Store);
