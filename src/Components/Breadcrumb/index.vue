@@ -1,23 +1,24 @@
 <template>
-  <el-breadcrumb class="app-breadcrumb" separator="/">
-    <transition-group name="breadcrumb">
-      <el-breadcrumb-item v-for="(item,index) in levelList" :key="item.path">
-        <span v-if="item.redirect==='noRedirect'||index===levelList.length-1" class="no-redirect">{{ item.meta.title }}</span>
-        <a v-else @click.prevent="handleLink(item)">{{ item.meta.title }}</a>
-      </el-breadcrumb-item>
-    </transition-group>
-  </el-breadcrumb>
+   <el-breadcrumb class="app-breadcrumb" separator="/">
+      <transition-group name="breadcrumb">
+         <el-breadcrumb-item v-for="(item, index) in levelList" :key="item.path">
+            <span v-if="item.redirect === 'noRedirect' || index === levelList.length - 1" class="no-redirect">{{ item.meta.title
+            }}</span>
+            <a v-else @click.prevent="handleLink(item)">{{ item.meta.title }}</a>
+         </el-breadcrumb-item>
+      </transition-group>
+   </el-breadcrumb>
 </template>
 
 <script>
 export default {
-   data () {
+   data() {
       return {
          levelList: null
       }
    },
    watch: {
-      $route (route) {
+      $route(route) {
          // if you go to the redirect page, do not update the breadcrumbs
          if (route.path.startsWith('/redirect/')) {
             return
@@ -25,11 +26,11 @@ export default {
          this.getBreadcrumb()
       }
    },
-   created () {
+   created() {
       this.getBreadcrumb()
    },
    methods: {
-      getBreadcrumb () {
+      getBreadcrumb() {
          // only show routes with meta.title
          let matched = this.$route.matched.filter(item => item.meta && item.meta.title)
          const first = matched[0]
@@ -40,22 +41,23 @@ export default {
 
          this.levelList = matched.filter(item => item.meta && item.meta.title && item.meta.breadcrumb !== false)
       },
-      isDashboard (route) {
+      isDashboard(route) {
          const name = route && route.name
          if (!name) {
             return false
          }
          return name.trim() === '首页'
       },
-      handleLink (item) {
+      handleLink(item) {
          const { redirect, path, name, query, params } = item
 
          if (redirect) {
-            if (redirect === this.$route.path) {
+            const temp = typeof redirect === 'function' ? redirect(item) : redirect
+            if (temp === this.$route.path) {
                return
             }
 
-            return this.$router.push(redirect)
+            return this.$router.push(temp)
          }
 
          if (query) {
@@ -72,7 +74,7 @@ export default {
             })
          }
 
-         this.$router.push(path)
+         return this.$router.push(path)
       }
    }
 }
@@ -80,14 +82,14 @@ export default {
 
 <style lang="less" scoped>
 .app-breadcrumb.el-breadcrumb {
-  display: inline-block;
-  font-size: 14px;
-  line-height: 50px;
-  margin-left: 8px;
+   display: inline-block;
+   font-size: 14px;
+   line-height: 50px;
+   margin-left: 8px;
 
-  .no-redirect {
-    color: #97a8be;
-    cursor: text;
-  }
+   .no-redirect {
+      color: #97a8be;
+      cursor: text;
+   }
 }
 </style>
