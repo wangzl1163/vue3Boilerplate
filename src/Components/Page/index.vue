@@ -1,17 +1,66 @@
+<!--
+ * @Description  : basic page
+ * @Author       : 王占领
+ * @Date         : 2022-03-08 14:29:25
+ * @LastEditTime: 2022-12-30 10:14:24
+ * @LastEditors: 王占领
+-->
 <template>
-   <el-card class="page" shadow="never" :body-style="style">
-      <template #header v-if="$slots.header">
-         <div :style="computedHeaderStyle">
-            <slot name="header"></slot>
+   <el-card
+      class="page"
+      :class="{ 'page-header': !$slots.header && !backHeader }"
+      shadow="never"
+      :body-style="style"
+   >
+      <template #header v-if="$slots.header || backHeader">
+         <div class="slot-header" :style="computedHeaderStyle">
+            <div v-if="backHeader" :style="{ height: backHeaderHeight }">
+               <el-page-header
+                  @back="$router.back()"
+                  :style="{ lineHeight: backHeaderHeight }"
+                  class="back-header"
+               >
+                  <template #icon>
+                     <SvgIcon icon="back"></SvgIcon>
+                  </template>
+                  <template #title>
+                     <span :style="{ color: $styleVars.colorPrimary }"
+                        >返回</span
+                     >
+                  </template>
+                  <template #content>
+                     <span class="text-base">{{ $route.meta.title }}</span>
+                  </template>
+               </el-page-header>
+            </div>
+            <slot name="header" v-else></slot>
          </div>
       </template>
-      <el-row :gutter="gutter" :justify="justify" :align="align">
+      <template #header v-else>
+         <div class="title-header" :style="computedHeaderStyle">
+            {{ $attrs.header }}
+         </div>
+      </template>
+
+      <el-row :gutter="rowGutter" :justify="justify" :align="align">
          <el-col
             v-if="$slots.pageLeft"
             :sm="computedLeftSpan.sm"
             :md="computedLeftSpan.md"
             :lg="computedLeftSpan.lg"
             :xl="computedLeftSpan.xl"
+            :class="{ 'fixed-left': fixLeft }"
+            :style="
+               fixLeft
+                  ? {
+                       flexBasis:
+                          typeof leftWidth === 'number'
+                             ? leftWidth + 'px'
+                             : leftWidth,
+                       maxWidth: 'none'
+                    }
+                  : {}
+            "
          >
             <slot name="pageLeft"></slot>
          </el-col>
@@ -21,6 +70,17 @@
             :md="computedRightSpan.md"
             :lg="computedRightSpan.lg"
             :xl="computedRightSpan.xl"
+            :class="{ 'fixed-right': fixLeft }"
+            :style="
+               fixLeft
+                  ? 'max-width:' +
+                    `calc(100% - ${
+                       typeof leftWidth === 'number'
+                          ? leftWidth + 'px'
+                          : leftWidth
+                    })`
+                  : ''
+            "
          >
             <slot></slot>
          </el-col>
@@ -28,20 +88,16 @@
    </el-card>
 </template>
 
-<script>
-export default {
-   name: "Page"
-};
-</script>
-<script setup>
+<script setup name="Page">
 import { computed, useSlots } from "vue";
-import styleVariables from "@/Assets/Style/Variables.module.less";
+import { useGlobal } from "@/Composables/Global";
+
+const gp = useGlobal();
 
 const slots = useSlots();
 const props = defineProps({
    gutter: {
-      type: Number,
-      default: 20
+      type: Number
    },
    justify: {
       type: String,
@@ -50,6 +106,14 @@ const props = defineProps({
    align: {
       type: String,
       default: "top" // flex 布局下的垂直排列方式,top/middle/bottom
+   },
+   fixLeft: {
+      type: Boolean,
+      default: false
+   },
+   leftWidth: {
+      type: [String, Number],
+      default: "300px"
    },
    leftSpan: {
       type: Object,
@@ -76,6 +140,14 @@ const props = defineProps({
    headerStyle: {
       type: Object,
       default: () => undefined
+   },
+   backHeader: {
+      type: Boolean,
+      default: false
+   },
+   backHeaderHeight: {
+      type: [String, Number],
+      default: "60px"
    }
 });
 
@@ -110,30 +182,79 @@ const computedRightSpan = computed(() => {
 
 const style = computed(() => {
    return {
-      paddingTop: "16px",
-      paddingBottom: "16px",
-      paddingLeft: "16px",
-      paddingRight: "16px",
-      backgroundColor: styleVariables.colorPrimaryLight2,
+      display: "flex",
+      paddingTop: "20px",
+      paddingBottom: "20px",
+      paddingLeft: "20px",
+      paddingRight: "20px",
+      backgroundColor: gp.$styleVars.colorWhite,
+      flex: 1,
       ...props.bodyStyle
    };
 });
 const computedHeaderStyle = computed(() => {
    return {
-      paddingTop: "16px",
-      paddingBottom: "16px",
-      paddingLeft: "16px",
-      paddingRight: "16px",
+      paddingLeft: "20px",
+      paddingRight: "20px",
       ...props.headerStyle
    };
 });
+const rowGutter = computed(() => props.gutter ?? gp.$styleVars.gutter);
 </script>
 
 <style lang="less">
+@import "@/Assets/Style/Mixin.less";
+@import "@/Assets/Style/Variables.less";
 .page {
+   display: flex;
+   flex-direction: column;
+   min-height: 100%;
    border: none;
-   .el-card__header {
-      padding: 0;
+   background-color: transparent;
+
+   .slot-header {
+      .flex(flex-start);
+      background-color: @color-white;
+      border-top-left-radius: var(--el-card-border-radius);
+      border-top-right-radius: var(--el-card-border-radius);
+      border-bottom: 1px solid var(--el-card-border-color);
    }
+
+   & > .el-card__header {
+      padding: 0 0;
+      background-color: transparent;
+      font-weight: 700;
+      border-bottom: none;
+   }
+   & > .el-card__body > .el-row {
+      flex-wrap: nowrap;
+      width: 100%;
+   }
+}
+.page-header {
+   & > .el-card__header {
+      background-color: @color-white;
+
+      .title-header {
+         padding: 20px 0 20px;
+         border-bottom: 1px solid var(--el-card-border-color);
+      }
+   }
+}
+.back-header {
+   .el-page-header__left {
+      margin-right: 17px;
+      &::after {
+         right: -9px;
+      }
+   }
+   .el-page-header__content {
+      .flex(flex-start);
+   }
+}
+
+.fixed-right {
+   flex-grow: 1;
+   flex-basis: auto;
 }
 </style>

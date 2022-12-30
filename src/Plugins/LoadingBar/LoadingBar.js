@@ -1,10 +1,17 @@
+/*
+ * @Description  : loading bar
+ * @Author       : 王占领
+ * @Date         : 2022-02-23 15:17:30
+ * @LastEditTime : 2022-03-08 17:26:52
+ * @LastEditors  : 王占领
+ */
 import LoadingBar from "./LoadingBar.vue";
 import { createVNode, render } from "vue";
 
 LoadingBar.newInstance = (properties) => {
-   const _props = (() => properties || {})();
+   const _props = () => properties || {};
    const container = document.createElement("div");
-   const Instance = createVNode(LoadingBar, _props);
+   const Instance = createVNode(LoadingBar, _props());
 
    render(Instance, container);
    document.body.appendChild(container.firstElementChild);

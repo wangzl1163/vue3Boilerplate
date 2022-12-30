@@ -77,8 +77,12 @@
    .flex(@justifyContent, @alignItems);
    flex-direction: column;
 }
+.inline-flex(@justifyContent:center, @alignItems:center) {
+   .flex(@justifyContent, @alignItems);
+   display: inline-flex;
+}
 
 // 计算 padding margin 等边距
 .computed-pt(@key,@sale:2) {
-   @{key}: 4px * @sale;
+   @{key}: 4px * @sale !important;
 }

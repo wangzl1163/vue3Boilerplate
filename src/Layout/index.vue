@@ -9,10 +9,10 @@
          @click="handleClickOutside"
       />
       <sidebar class="sidebar-container" />
-      <div :class="{ hasTagsView: tagsView }" class="main-container">
-         <div :class="{ 'fixed-header': fixedHeader }">
+      <div :class="{ hasTagsView: showTagsView }" class="main-container">
+         <div :class="{ 'fixed-header': isFixedHeader }">
             <navbar />
-            <tags-view v-if="tagsView" />
+            <tags-view v-if="showTagsView" />
          </div>
          <app-main />
       </div>
@@ -20,10 +20,11 @@
 </template>
 
 <script>
+import { mapState, mapActions } from "pinia";
+import request from "@/Utils/HttpRequest";
+import { useAppStore, useSettingStore } from "@/Stores";
 import { AppMain, Navbar, Sidebar, TagsView } from "./Components";
 import ResizeMixin from "./Mixin/ResizeHandler";
-import { mapState, mapGetters } from "vuex";
-import request from "@/Utils/HttpRequest";
 
 export default {
    name: "Layout",
@@ -35,11 +36,11 @@ export default {
    },
    mixins: [ResizeMixin],
    computed: {
-      ...mapState({
-         sidebar: (state) => state.app.sidebar,
-         device: (state) => state.app.device
+      ...mapState(useAppStore, {
+         sidebar: (store) => store.sidebar,
+         device: (store) => store.device
       }),
-      ...mapGetters(["tagsView", "fixedHeader"]),
+      ...mapState(useSettingStore, ["showTagsView", "isFixedHeader"]),
       classObj() {
          return {
             hideSidebar: !this.sidebar.opened,
@@ -50,22 +51,29 @@ export default {
       }
    },
    methods: {
+      ...mapActions(useAppStore, ["closeSideBar"]),
       handleClickOutside() {
-         this.$store.dispatch("closeSideBar", { withoutAnimation: false });
+         this.closeSideBar({ withoutAnimation: false });
       }
    },
    beforeRouteLeave() {
       request.$abort();
+      request.$clearPostData();
    },
-   beforeRouteUpdate() {
-      request.$abort();
+   beforeRouteUpdate(to, from, next) {
+      if (to.path !== from.path) {
+         request.$abort();
+         request.$clearPostData();
+      }
+
+      next();
    }
 };
 </script>
 
 <style lang="less" scoped>
 @import "@/Assets/Style/Mixin.less";
-@import "@/Assets/Style/Variables.module.less";
+@import "@/Assets/Style/Variables.less";
 .app-wrapper {
    .clearfix();
    position: relative;
@@ -89,10 +97,11 @@ export default {
 }
 
 .main-container {
+   position: relative;
    min-height: 100%;
    transition: margin-left 0.28s;
-   margin-left: @sideBarWidth;
-   position: relative;
+   margin-left: @sidebar-width;
+   background-color: @bg-color;
 }
 
 .fixed-header {
@@ -100,12 +109,12 @@ export default {
    top: 0;
    right: 0;
    z-index: 9;
-   width: calc(100% - @sideBarWidth);
+   width: calc(100% - @sidebar-width);
    transition: width 0.28s;
 }
 
 .hideSidebar .fixed-header {
-   width: calc(100% - 54px);
+   width: calc(100% - @header-height);
 }
 
 .mobile .fixed-header {

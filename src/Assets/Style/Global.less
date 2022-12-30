@@ -1,0 +1,115 @@
+.clearfix {
+   &:after {
+      visibility: hidden;
+      display: block;
+      font-size: 0;
+      content: " ";
+      clear: both;
+      height: 0;
+   }
+}
+
+.danger {
+   --hover-color: @color-danger-dark-3;
+   --focus-color: @color-danger-dark-3;
+   color: @color-danger;
+   &:hover,
+   &:focus {
+      color: @color-danger-dark-3;
+   }
+}
+
+.success {
+   --hover-color: @color-success-dark-3;
+   --focus-color: @color-success-dark-3;
+   color: @color-success;
+   &:hover,
+   &:focus {
+      color: @color-success-dark-3;
+   }
+}
+
+.btn-disabled() {
+   background-color: @btn-color-disabled-bg;
+   border-color: @btn-color-disabled-border;
+   color: @btn-color-disabled-text;
+}
+.btn-primary {
+   background-color: @color-primary;
+   border-color: @color-primary;
+   color: @color-white;
+   &:hover {
+      background-color: @color-primary-dark-4;
+      border-color: @color-primary-dark-4;
+   }
+   &:focus {
+      background-color: #0d4186;
+      border-color: #0d4186;
+   }
+   &:disabled {
+      .btn-disabled();
+   }
+}
+
+.btn-secondary {
+   background-color: @btn-color-secondary-bg;
+   border-color: @btn-color-secondary-border;
+   color: @btn-color-secondary-text;
+   &:hover {
+      background-color: @btn-color-secondary-bg;
+      border-color: @btn-color-secondary-border-hover;
+      color: @btn-color-secondary-text-hover;
+   }
+   &:active,
+   &:focus {
+      background-color: @btn-color-secondary-bg-active;
+      border-color: @btn-color-secondary-border-active;
+      color: @btn-color-secondary-text-active;
+   }
+   &:disabled {
+      .btn-disabled();
+   }
+}
+
+.btn-text {
+   background-color: transparent;
+   border-color: transparent;
+   &:hover {
+      background-color: @color-gray-space-light-8;
+   }
+   &:focus {
+      background-color: @color-primary-light-5;
+   }
+   &:disabled {
+      color: @disabled-text-color;
+   }
+}
+
+.btn-icon {
+   color: @icon-color-secondary;
+   cursor: pointer;
+   &:hover {
+      color: @color-primary;
+   }
+   &:active,
+   &:focus {
+      color: @color-primary-dark-4;
+   }
+   &:disabled {
+      color: @icon-color-disabled;
+   }
+}
+
+.password-security {
+   & .el-input__inner {
+      font-family: text-security-disc;
+      &::placeholder {
+         font-family: @font-family;
+      }
+   }
+}
+
+.tips-icon {
+   vertical-align: text-bottom;
+   cursor: pointer;
+}

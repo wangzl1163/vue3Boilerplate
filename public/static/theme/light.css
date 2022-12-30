@@ -1,0 +1,29 @@
+.light {
+   --text-color-primary: #353840;
+   --text-color-regular: #595d67;
+   --text-color-secondary: #838793;
+   --text-color-placeholder: #aaafbd;
+   --text-color-disabled: #bcc0cf;
+
+   --border-color: #dfe1e9;
+   --border-color-light: #e4e7ed;
+   --border-color-lighter: #ebeef5;
+   --border-color-extra-light: #f2f6fc;
+   --border-color-dark: #d3d7e0;
+   --border-color-darker: #cbcfda;
+
+   --fill-color: #f0f2f9;
+   --fill-color-light: #f5f7fa;
+   --fill-color-lighter: rgba(245, 247, 250, 0.6);
+   --fill-color-extra-light: #fafcff;
+   --fill-color-dark: #edf0f6;
+   --fill-color-darker: #ebeef5;
+
+   --bg-color: #ffffff;
+   --bg-color-page: #edf0f6;
+   --bg-color-overlay: #ffffff;
+
+   --dialog-title-color: #1e2128;
+   --dialog-close-color: #353840;
+   --dialog-btn-color: #1e2128;
+}

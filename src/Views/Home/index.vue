@@ -1,8 +1,15 @@
+<!--
+ * @Description: home
+ * @Author: 王占领
+ * @Date: 2022-12-21 11:15:21
+ * @LastEditTime: 2022-12-30 10:25:31
+ * @LastEditors: 王占领
+-->
 <template>
-   <div>home</div>
+   <div>首页</div>
 </template>
 
-<script setup>
+<script lang="ts" setup name="Home">
 import { ref } from "vue";
 </script>
 

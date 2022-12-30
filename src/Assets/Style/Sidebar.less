@@ -1,20 +1,16 @@
+@import "./Variables.less";
+
 #app {
    .sidebar-container {
-      transition: width 0.28s;
-      width: @sideBarWidth !important;
-      background: linear-gradient(
-         135deg,
-         #002142 0%,
-         #002e5c 94%,
-         #002142 100%
-      );
-      height: 100%;
       position: fixed;
-      border-right: 1px inset #00478f;
-      font-size: 0px;
       top: 0;
       bottom: 0;
       left: 0;
+      height: 100%;
+      width: @sidebar-width;
+      transition: width 0.28s;
+      background-color: @sidebar-bg-color;
+      font-size: 0px;
       z-index: 1001;
       overflow: hidden;
 
@@ -34,9 +30,9 @@
 
       .el-scrollbar {
          height: 100%;
-         background-image: url(../Images/BgImg.png);
-         background-repeat: no-repeat;
-         background-position: left bottom;
+         // background-image: url(../Images/BgImg.png);
+         // background-repeat: no-repeat;
+         // background-position: left bottom;
       }
 
       &.has-logo {
@@ -55,14 +51,20 @@
          overflow: hidden;
       }
 
-      .svg-icon {
-         margin-right: 4px;
-      }
-
       .el-menu {
          border: none;
          height: 100%;
-         width: 100% !important;
+         width: 100%;
+
+         .svg-icon {
+            margin-right: 12px;
+         }
+      }
+
+      ul[role="menubar"] {
+         & > div > .el-sub-menu > .el-sub-menu__title {
+            padding-left: 21px !important;
+         }
       }
 
       // menu hover
@@ -73,13 +75,15 @@
          }
       }
 
-      .is-active > .el-sub-menu__title {
-         color: @subMenuActiveText !important;
+      .is-active {
+         & > .el-sub-menu__title {
+            color: @subMenuActiveText !important;
+         }
       }
 
       & .nest-menu .el-sub-menu > .el-sub-menu__title,
       & .el-sub-menu .el-menu-item {
-         min-width: @sideBarWidth !important;
+         min-width: @sidebar-width !important;
          background-color: @subMenuBg !important;
 
          &:hover {
@@ -87,12 +91,20 @@
          }
       }
 
-      & .el-sub-menu .is-active {
+      & .el-sub-menu .el-menu-item {
+         height: 56px;
+         line-height: 56px;
+      }
+      & .el-sub-menu .el-menu-item.is-active {
          background-color: @subMenuActiveBg !important;
       }
 
       & .el-sub-menu .is-opened {
          background-color: @subMenuBg !important;
+      }
+
+      & .el-menu-item > svg {
+         font-size: @font-size-medium;
       }
    }
 
@@ -118,18 +130,20 @@
          }
       }
 
-      .el-sub-menu {
-         overflow: hidden;
+      ul[role="menubar"] {
+         & > div > .el-sub-menu {
+            overflow: hidden;
 
-         & > .el-sub-menu__title {
-            padding: 0 !important;
+            & > .el-sub-menu__title {
+               padding: 0 !important;
 
-            .svg-icon {
-               margin-left: 20px;
-            }
+               .svg-icon {
+                  margin-left: 20px;
+               }
 
-            .el-sub-menu__icon-arrow {
-               display: none;
+               .el-sub-menu__icon-arrow {
+                  display: none;
+               }
             }
          }
       }
@@ -150,7 +164,7 @@
    }
 
    .el-menu--collapse .el-menu .el-sub-menu {
-      min-width: @sideBarWidth !important;
+      min-width: @sidebar-width !important;
    }
 
    // mobile responsive
@@ -161,14 +175,14 @@
 
       .sidebar-container {
          transition: transform 0.28s;
-         width: @sideBarWidth !important;
+         width: @sidebar-width !important;
       }
 
       &.hideSidebar {
          .sidebar-container {
             pointer-events: none;
             transition-duration: 0.3s;
-            transform: translate3d((0 - @sideBarWidth), 0, 0);
+            transform: translate3d((0 - @sidebar-width), 0, 0);
          }
       }
    }
@@ -189,11 +203,26 @@
       }
    }
 
+   .nest-menu .el-menu-item {
+      color: @menuCollapseText;
+   }
+   .nest-menu .el-menu-item.is-active {
+      color: @menuCollapseActiveText;
+   }
+
    .nest-menu .el-sub-menu > .el-sub-menu__title,
    .el-menu-item {
       &:hover {
-         // you can use @subMenuHover
-         background-color: @menuHover !important;
+         // you can use @subMenuHover @menuHover
+         background-color: @subMenuHover !important;
+      }
+   }
+   .nest-menu .el-sub-menu {
+      &.is-active .el-sub-menu__title {
+         color: @menuCollapseActiveText !important;
+      }
+      & .el-sub-menu__title {
+         color: @menuCollapseText !important;
       }
    }
 

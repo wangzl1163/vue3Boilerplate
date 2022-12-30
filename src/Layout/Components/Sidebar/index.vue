@@ -1,3 +1,10 @@
+<!--
+ * @Description  : 
+ * @Author       : 王占领
+ * @Date         : 2022-02-25 13:56:40
+ * @LastEditTime: 2022-12-29 17:04:39
+ * @LastEditors: 王占领
+-->
 <template>
    <div :class="{ 'has-logo': true }">
       <logo :collapse="isCollapse" />
@@ -24,16 +31,18 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapState } from "pinia";
+import { usePermissionStore, useAppStore } from "@/Stores";
 import Logo from "./Logo.vue";
 import SidebarItem from "./SidebarItem.vue";
-import variables from "@/Assets/Style/Variables.module.less";
+import { styleVars } from "@/Assets/Theme";
 
 export default {
    name: "Sidebar",
    components: { SidebarItem, Logo },
    computed: {
-      ...mapGetters(["permissionRoutes", "sidebar"]),
+      ...mapState(useAppStore, ["sidebar"]),
+      ...mapState(usePermissionStore, ["permissionRoutes"]),
       activeMenu() {
          const route = this.$route;
          const { meta, path } = route;
@@ -44,7 +53,7 @@ export default {
          return path;
       },
       variables() {
-         return variables;
+         return styleVars();
       },
       isCollapse() {
          return !this.sidebar.opened;

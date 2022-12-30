@@ -1,8 +1,11 @@
 @import "./Mixin.less";
-@import "./Variables.module.less";
+@import "./Variables.less";
 @import "./Transition.less";
 @import "./ElementUI.less";
+@import "./BigElement.less";
+@import "./Global.less";
 @import "./Sidebar.less";
+@import "./EChartsRow.less";
 
 html,
 body {
@@ -11,9 +14,8 @@ body {
    -moz-osx-font-smoothing: grayscale;
    -webkit-font-smoothing: antialiased;
    text-rendering: optimizeLegibility;
-   font-family: PingFang SC, Noto Sans S Chinese, DIN Pro, Microsoft YaHei,
-      Arial, sans-serif;
-   font-size: 14px;
+   font-family: @font-family;
+   font-size: @font-size-base;
 }
 
 html {
@@ -34,64 +36,14 @@ a:hover {
    text-decoration: none;
 }
 
-.clearfix {
-   &:after {
-      visibility: hidden;
-      display: block;
-      font-size: 0;
-      content: " ";
-      clear: both;
-      height: 0;
-   }
+::-webkit-scrollbar {
+   width: 8px;
+   height: 8px;
 }
-
-.no-padding {
-   padding: 0px !important;
+::-webkit-scrollbar-track-piece {
+   background: @bg-color;
 }
-
-.height-100 {
-   height: 100%;
-}
-
-.width-100 {
-   width: 100%;
-}
-
-// margin
-.mt24 {
-   .computed-pt(margin-top, 6);
-}
-.mt16 {
-   .computed-pt(margin-top, 4);
-}
-.ml16 {
-   .computed-pt(margin-left, 4);
-}
-.mr16 {
-   .computed-pt(margin-right, 4);
-}
-.mt8 {
-   .computed-pt(margin-top);
-}
-.mb8 {
-   .computed-pt(margin-bottom);
-}
-.ml4 {
-   .computed-pt(margin-left, 1);
-}
-.mr4 {
-   .computed-pt(margin-right, 1);
-}
-
-.main {
-   background: #092747;
-}
-
-.block {
-   background-color: #083361;
-}
-
-/*  标题背景 */
-.block-header {
-   background-color: #053c73;
+::-webkit-scrollbar-thumb {
+   background: @border-color;
+   border-radius: @gutter;
 }

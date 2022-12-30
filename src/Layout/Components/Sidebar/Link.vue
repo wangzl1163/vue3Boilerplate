@@ -1,3 +1,10 @@
+<!--
+ * @Description  : 
+ * @Author       : 王占领
+ * @Date         : 2022-02-25 13:56:40
+ * @LastEditTime : 2022-03-02 11:05:33
+ * @LastEditors  : 王占领
+-->
 <template>
   <component :is="type" v-bind="linkProps(to)">
     <slot />
@@ -34,7 +41,6 @@ export default {
                rel: 'noopener'
             }
          }
-
          return {
             to: to
          }

@@ -1,3 +1,10 @@
+<!--
+ * @Description  : 
+ * @Author       : 王占领
+ * @Date         : 2022-02-23 15:17:30
+ * @LastEditTime : 2022-03-08 16:38:40
+ * @LastEditors  : 王占领
+-->
 <template>
    <transition name="fade">
       <div :class="classes" :style="outerStyles" v-show="show">
@@ -86,7 +93,7 @@ export default {
    top: 0;
    left: 0;
    right: 0;
-   z-index: 2100;
+   z-index: 10000;
    .formateClass(inner,{transition:width 1s linear;});
    .formateClass(inner-color-primary,{background-color:#45b035;});
    .formateClass(inner-failed-color-error,{background-color:#ed4014;});

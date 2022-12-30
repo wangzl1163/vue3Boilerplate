@@ -1,3 +1,10 @@
+<!--
+ * @Description  : app main
+ * @Author       : 王占领
+ * @Date         : 2022-02-25 13:56:40
+ * @LastEditTime: 2022-12-23 16:16:47
+ * @LastEditors: 王占领
+-->
 <template>
    <section class="app-main">
       <router-view v-slot="{ Component }">
@@ -11,40 +18,44 @@
 </template>
 
 <script>
+import { mapState } from "pinia";
+import { useTagsViewStore } from "@/Stores";
+
 export default {
-   name: 'AppMain',
+   name: "AppMain",
    computed: {
-      cachedViews () {
-         return this.$store.state.tagsView.cachedViews
-      },
-      key () {
-         return this.$route.path
+      ...mapState(useTagsViewStore, ["cachedViews"]),
+      key() {
+         return this.$route.path;
       }
    }
-}
+};
 </script>
 
 <style lang="less" scoped>
+@import "@/Assets/Style/Variables.less";
 .app-main {
-   /* 50= navbar  50  */
-   min-height: calc(100vh - 50px);
+   height: calc(100vh - 48px);
    width: 100%;
    position: relative;
-   overflow: hidden;
+   overflow: auto;
+   padding: 20px;
+   background-color: @bg-color;
 }
 
 .fixed-header + .app-main {
-   padding-top: 50px;
+   padding-top: 68px;
+   height: 100vh;
 }
 
 .hasTagsView {
    .app-main {
-      /* 84 = navbar + tags-view = 50 + 34 */
-      min-height: calc(100vh - 84px);
+      /* 82 = navbar + tags-view = 4 + 34 */
+      min-height: calc(100vh - 82px);
    }
 
    .fixed-header + .app-main {
-      padding-top: 84px;
+      padding-top: 82px;
    }
 }
 </style>

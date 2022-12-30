@@ -1,52 +1,62 @@
+<!--
+ * @Description  : 
+ * @Author       : 王占领
+ * @Date         : 2022-02-23 10:33:11
+ * @LastEditTime : 2022-03-04 09:39:40
+ * @LastEditors  : 王占领
+-->
 <template>
    <div>
-      <svg-icon :icon-class="isFullscreen?'exit-fullscreen':'fullscreen'" @click="click" />
+      <svg-icon
+         :icon-class="isFullscreen ? 'exit-fullscreen' : 'fullscreen'"
+         @click="click"
+      />
    </div>
 </template>
 
 <script>
-import screenfull from 'screenfull'
+import screenfull from "screenfull";
 
 export default {
-   name: 'Screenfull',
-   data () {
+   name: "Screenfull",
+   data() {
       return {
          isFullscreen: false
-      }
+      };
    },
-   mounted () {
-      this.init()
+   mounted() {
+      this.init();
    },
-   beforeDestroy () {
-      this.destroy()
+   beforeUnmount() {
+      this.destroy();
    },
    methods: {
-      click () {
+      click() {
          if (!screenfull.isEnabled) {
             this.$message({
-               message: '你的浏览器当前版本不支持，请升级或更换浏览器后重试',
-               type: 'warning'
-            })
-            return false
+               message: "你的浏览器当前版本不支持，请升级或更换浏览器后重试",
+               type: "warning"
+            });
+            return false;
          }
-         
-         screenfull.toggle()
+
+         screenfull.toggle();
       },
-      change () {
-         this.isFullscreen = screenfull.isFullscreen
+      change() {
+         this.isFullscreen = screenfull.isFullscreen;
       },
-      init () {
+      init() {
          if (screenfull.enabled) {
-            screenfull.on('change', this.change)
+            screenfull.on("change", this.change);
          }
       },
-      destroy () {
+      destroy() {
          if (screenfull.enabled) {
-            screenfull.off('change', this.change)
+            screenfull.off("change", this.change);
          }
       }
    }
-}
+};
 </script>
 
 <style scoped>

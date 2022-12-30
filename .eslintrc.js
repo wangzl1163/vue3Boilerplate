@@ -1,3 +1,11 @@
+/*
+ * @Description  :
+ * @Author       : 王占领
+ * @Date         : 2022-03-01 18:13:55
+ * @LastEditTime: 2022-12-26 14:54:07
+ * @LastEditors: 王占领
+ */
+
 module.exports = {
    env: {
       browser: true,
@@ -27,6 +35,9 @@ module.exports = {
    rules: {
       "no-tabs": ["error", { allowIndentationTabs: true }],
       "no-unused-vars": ["off"],
-      "@typescript-eslint/no-unused-vars": "off"
+      "no-undef": "off",
+      "@typescript-eslint/no-unused-vars": "off",
+      "@typescript-eslint/no-non-null-assertion": "off",
+      "@typescript-eslint/no-empty-function": "off"
    }
 };

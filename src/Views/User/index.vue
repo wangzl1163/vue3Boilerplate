@@ -80,7 +80,8 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapState } from "pinia";
+import { useUserStore } from "@/Stores";
 import userInfo from "./UserInfo.vue";
 import resetPwd from "./ResetPwd.vue";
 import { getUserProfile } from "@/Apis/User";
@@ -96,7 +97,9 @@ export default {
          activeTab: "resetPwd"
       };
    },
-   computed: mapGetters(["avatar", "userName", "userInfo", "userRoles"]),
+   computed: {
+      ...mapState(useUserStore, ["avatar", "userName", "userInfo", "userRoles"])
+   },
    created() {
       // this.getUser()
    },

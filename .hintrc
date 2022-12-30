@@ -1,0 +1,12 @@
+{
+   "extends": ["development"],
+   "hints": {
+      "compat-api/css": [
+         "default",
+         {
+            "ignore": ["width: fit-content"]
+         }
+      ]
+   },
+   "browserslist": ["defaults", "not ie 11", "and_ff >= 78", "firefox >= 78"]
+}

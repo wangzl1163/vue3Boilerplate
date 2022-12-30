@@ -1,3 +1,10 @@
+<!--
+ * @Description  : 
+ * @Author       : 王占领
+ * @Date         : 2022-02-25 13:56:40
+ * @LastEditTime: 2022-12-28 17:15:14
+ * @LastEditors: 王占领
+-->
 <template>
    <div v-if="!item.hidden">
       <template
@@ -13,13 +20,24 @@
          >
             <el-menu-item
                :index="resolvePath(onlyOneChild.path)"
-               :class="{ 'submenu-title-noDropdown': !isNest }"
+               :class="{
+                  'submenu-title-noDropdown': !isNest,
+                  'is-active':
+                     $route.path === onlyOneChild.redirect ||
+                     $route.matched.some(
+                        (m) =>
+                           m.path === resolvePath(onlyOneChild.path) &&
+                           m.path !== $route.path
+                     )
+               }"
             >
                <item
                   :icon="
                      onlyOneChild.meta.icon || (item.meta && item.meta.icon)
                   "
                   :title="onlyOneChild.meta.title"
+                  :path="resolvePath(onlyOneChild.path)"
+                  :redirect="onlyOneChild.redirect"
                />
             </el-menu-item>
          </app-link>
@@ -36,6 +54,7 @@
                v-if="item.meta"
                :icon="item.meta && item.meta.icon"
                :title="item.meta.title"
+               :path="item.path"
             />
          </template>
          <sidebar-item
@@ -52,7 +71,7 @@
 
 <script>
 import { isExternal } from "@/Utils/Validate";
-import Item from "./Item.jsx";
+import Item from "./Item";
 import AppLink from "./Link.vue";
 import FixIOSBug from "./FixIOSBug";
 
@@ -64,16 +83,16 @@ export default {
       // route object
       item: {
          type: Object,
-         required: true,
+         required: true
       },
       isNest: {
          type: Boolean,
-         default: false,
+         default: false
       },
       basePath: {
          type: String,
-         default: "",
-      },
+         default: ""
+      }
    },
    data() {
       this.onlyOneChild = null;
@@ -101,7 +120,7 @@ export default {
             this.onlyOneChild = {
                ...parent,
                path: "",
-               noShowingChildren: true,
+               noShowingChildren: true
             };
             return true;
          }
@@ -112,7 +131,6 @@ export default {
          if (isExternal(routePath)) {
             return routePath;
          }
-
          if (isExternal(this.basePath)) {
             return this.basePath;
          }
@@ -121,7 +139,7 @@ export default {
             ? routePath
             : (this.basePath === "/" ? "" : this.basePath) +
                  (routePath ? "/" + routePath : "");
-      },
-   },
+      }
+   }
 };
 </script>

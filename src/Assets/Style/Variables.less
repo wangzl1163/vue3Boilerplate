@@ -1,0 +1,209 @@
+// font
+@font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB",
+   "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+@font-size-base: 14px; // 正常文字
+@font-size-extra-small: 12px; // 辅助文字
+@font-size-medium: 16px;
+@font-size-large: 24px; // 标题
+@font-size-extra-large: 36px; // 标题
+
+// base color
+@color-white: #ffffff;
+@color-white-85: rgba(255, 255, 255, 0.85);
+@color-white-60: rgba(255, 255, 255, 0.6);
+@color-black: #000000;
+@color-primary: #005fc1; // 常规
+@color-primary-light-1: #468dcc; // 文本不可选
+@color-primary-light-2: #99bfe6; // 文字禁用时使用
+@color-primary-light-3: #ccdff3; // tag
+@color-primary-light-4: #dbe9f7; // input选中时使用
+@color-primary-light-5: #e6eff9;
+@color-primary-dark-1: #001c4d; // sidebar-bg
+@color-primary-dark-2: #002a6a;
+@color-primary-dark-3: #003a87; // 点击时使用
+@color-primary-dark-4: #004ca4; // hover时使用
+
+@color-gray-space: #1e2128; // 主要文字 gray 90
+@color-gray-space-light-1: #353840; // icon main gray 80
+@color-gray-space-light-2: #595d67; // 次要文字 gray 70
+@color-gray-space-light-3: #838793; // Icon secondary gray 60
+@color-gray-space-light-4: #aaafbd; // 说明文字 gray 50
+@color-gray-space-light-5: #b8bdcc; // Icon disable gray 40
+@color-gray-space-light-6: #cbcfda; // Border gray 30
+@color-gray-space-light-7: #dfe1e9; // Line gray 20
+@color-gray-space-light-8: #ebeef5; // BG/不可选 gray 15
+@color-gray-space-light-9: #f5f7fa; // 表格间隔 gray 10
+@color-gray-space-light-10: rgba(245, 247, 250, 0.6); // 表格表头 gray 5
+
+@fill-color: var(--fill-color);
+@fill-color-light: var(--fill-color-light);
+@fill-color-lighter: var(--fill-color-lighter);
+@fill-color-extra-light: var(--fill-color-extra-light);
+@fill-color-dark: var(--fill-color-dark);
+@fill-color-darker: var(--fill-color-darker);
+
+// Functional color
+@color-success: #67c23a;
+@color-success-light-1: #83ce57;
+@color-success-light-2: #9fda77;
+@color-success-light-3: #bbe799; // 文字禁用
+@color-success-light-4: #d7f3bf; // 一般禁用
+@color-success-light-5: #f4ffe8; // tag
+@color-success-dark: #0f4d00;
+@color-success-dark-1: #1f6a08;
+@color-success-dark-2: #338714; // 点击
+@color-success-dark-3: #4ba525; // 悬浮
+
+@color-warning: #ffb23f;
+@color-warning-light-1: #ffc561;
+@color-warning-light-2: #ffd683;
+@color-warning-light-3: #ffe4a4; // 文字禁用
+@color-warning-light-4: #fff0c6; // 一般禁用
+@color-warning-light-5: #fffae8;
+@color-warning-dark: #4d2400;
+@color-warning-dark-1: #794007;
+@color-warning-dark-2: #a66214; // 点击
+@color-warning-dark-3: #d28827; // 悬浮
+
+@color-error: #e23a3a;
+@color-error-light-1: #f78884;
+@color-error-light-2: #f9a39c;
+@color-error-light-3: #fbbcb5; // 文字禁用
+@color-error-light-4: #fdd5ce; // 一般禁用
+@color-error-light-5: #ffece8; // spacer
+@color-error-dark: #4d000a;
+@color-error-dark-1: #770d18;
+@color-error-dark-2: #a1232c; // 点击
+@color-error-dark-3: #cb4348; // 悬浮
+
+@color-danger: #e23a3a;
+@color-danger-light-1: #f78884;
+@color-danger-light-2: #f9a39c;
+@color-danger-light-3: #fbbcb5; // 文字禁用
+@color-danger-light-4: #fdd5ce; // 一般禁用
+@color-danger-light-5: #ffece8; // tag
+@color-danger-dark: #4d000a;
+@color-danger-dark-1: #770d18;
+@color-danger-dark-2: #a1232c; // 点击
+@color-danger-dark-3: #cb4348; // 悬浮
+
+// 告警级别
+@alarm-level-1: #d73d3d;
+@alarm-level-2: #e1990e;
+@alarm-level-3: #d7db28;
+@alarm-level-4: #4286d4;
+
+// 背景
+@bg-color: var(--fill-color-dark); // @color-gray-space-light-8;
+
+// 文本
+@text-color-primary: #353840; // 等于 var(--text-color-primary);
+@text-color-regular: #595d67; // 等于 var(--text-color-regular);
+@text-color-secondary: #838793; // 等于 var(--text-color-secondary);
+@text-color-placeholder: #aaafbd; // 等于 var(--text-color-placeholder);
+@text-color-disabled: #bcc0cf; // 等于 var(--text-color-disabled);
+
+// 描边
+@border-color: var(--border-color);
+@border-color-light: var(--border-color-light);
+@border-radius-base: 6px;
+
+// 遮盖
+@mask-color: rgba(228, 231, 237, 0.6);
+
+// 禁用
+@disabled-bg-color: @color-gray-space-light-9;
+@disabled-text-color: @color-gray-space-light-4;
+
+// 选中
+@selected-input-color: @color-primary-light-4;
+
+// 点击态
+@click-active-color: @color-primary-dark-3;
+
+// 悬浮
+@hover-color: @fill-color-light;
+
+// icon
+@icon-color-primary: @color-gray-space-light-1;
+@icon-color-secondary: @color-gray-space-light-3;
+@icon-color-disabled: @color-gray-space-light-5;
+
+// 表格相关
+@table-color-header: var(--fill-color-lighter);
+@table-color-header-text: var(--text-color-regular);
+@table-color-row-active-color: var(--fill-color-dark);
+@table-color-text: @text-color-primary;
+
+// echarts 颜色
+@chart-bg-color: @color-gray-space-light-9;
+@text-color-legend: @color-gray-space-light-2;
+@text-color-empty: @color-gray-space-light-4;
+@axis-line-color: @color-gray-space-light-6;
+@split-line-color: @color-gray-space-light-7;
+@axis-tick-color: @color-gray-space-light-4;
+@data-zoom-bg-color: @color-gray-space-light-9;
+@data-zoom-border-color: @color-gray-space-light-6;
+//@data-zoom-fill-color: @color-gray-space-light-7; // 选中范围的填充颜色。
+@data-zoom-move-handle-color: @color-gray-space-light-7;
+
+// tag
+@tag-success-color: @color-success-light-5;
+@tag-success-text-color: @color-success;
+@tag-danger-color: @color-danger-light-5;
+@tag-danger-text-color: @color-danger;
+@tag-info-color: #e8f7ff;
+@tag-info-text-color: @color-primary;
+@tag-disabled-color: @color-gray-space-light-8;
+@tag-disabled-text-color: @color-gray-space-light-2;
+
+// layout
+// spacer
+@gutter-value: 12;
+@gutter: e("@{gutter-value}px");
+
+// header
+@header-height: 48px;
+
+// sidebar
+@sidebar-width: 220px;
+@sidebar-bg-color: @color-primary-dark-1;
+@menuText: @color-white-85;
+@menuCollapseText: @color-gray-space;
+@menuActiveText: @color-white;
+@menuCollapseActiveText: @color-primary;
+@subMenuActiveText: @color-white; // https://github.com/ElemeFE/element/issues/12951
+@subMenuActiveBg: #005fc1;
+@menuBg: transparent;
+@menuHover: rgba(0, 97, 194, 0.4);
+@subMenuBg: transparent;
+@subMenuHover: rgba(0, 95, 193, 0.2);
+
+// navbar
+@navbar-height: 48px;
+
+// 按钮禁用
+@btn-color-disabled-bg: @disabled-bg-color;
+@btn-color-disabled-border: @border-color;
+@btn-color-disabled-text: @disabled-text-color;
+
+// 次要按钮，正常、悬停、点击
+@btn-color-secondary-bg: @color-white;
+@btn-color-secondary-border: @border-color;
+@btn-color-secondary-text: @text-color-primary;
+@btn-color-secondary-border-hover: #4d8fd4;
+@btn-color-secondary-text-hover: @color-primary;
+@btn-color-secondary-bg-active: @color-primary-light-5;
+@btn-color-secondary-border-active: @color-primary-dark-4;
+@btn-color-secondary-text-active: @color-primary-dark-3;
+
+// 文字按钮，正常、悬停、点击
+@btn-color-text-bg: @color-white;
+@btn-color-text-border: @color-white;
+@btn-color-text-text: @text-color-primary;
+@btn-color-text-border-hover: @color-gray-space-light-8;
+@btn-color-text-text-hover: @text-color-primary;
+@btn-color-text-bg-hover: @color-gray-space-light-8;
+@btn-color-text-bg-active: @color-primary-light-5;
+@btn-color-text-border-active: @color-primary-light-5;
+@btn-color-text-text-active: @text-color-primary;
