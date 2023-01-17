@@ -202,7 +202,7 @@ const computedHeaderStyle = computed(() => {
 const rowGutter = computed(() => props.gutter ?? gp.$styleVars.gutter);
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
 @import "@/Assets/Style/Mixin.less";
 @import "@/Assets/Style/Variables.less";
 .page {
@@ -220,19 +220,19 @@ const rowGutter = computed(() => props.gutter ?? gp.$styleVars.gutter);
       border-bottom: 1px solid var(--el-card-border-color);
    }
 
-   & > .el-card__header {
+   & > :deep(.el-card__header) {
       padding: 0 0;
       background-color: transparent;
       font-weight: 700;
       border-bottom: none;
    }
-   & > .el-card__body > .el-row {
+   & > :deep(.el-card__body > .el-row) {
       flex-wrap: nowrap;
       width: 100%;
    }
 }
 .page-header {
-   & > .el-card__header {
+   & > :deep(.el-card__header) {
       background-color: @color-white;
 
       .title-header {
@@ -242,13 +242,13 @@ const rowGutter = computed(() => props.gutter ?? gp.$styleVars.gutter);
    }
 }
 .back-header {
-   .el-page-header__left {
+   :deep(.el-page-header__left) {
       margin-right: 17px;
       &::after {
          right: -9px;
       }
    }
-   .el-page-header__content {
+   :deep(.el-page-header__content) {
       .flex(flex-start);
    }
 }
