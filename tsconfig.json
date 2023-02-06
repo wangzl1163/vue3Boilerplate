@@ -1,8 +1,8 @@
 {
    "compilerOptions": {
       "strict": true,
-      "target": "esnext",
-      "module": "esnext",
+      "target": "ESNext",
+      "module": "ESNext",
       "moduleResolution": "node",
       "useDefineForClassFields": true,
       "composite": true,
@@ -10,17 +10,19 @@
       "sourceMap": true,
       "resolveJsonModule": true,
       "esModuleInterop": true,
-      "lib": ["esnext", "dom"],
+      "lib": ["ESNext", "DOM"],
       "allowJs": true,
       "checkJs": false,
       "outDir": "dist", // 设置allowJS为true后必须设置outDir，否则编译器会报错
       "baseUrl": "./",
+      "isolatedModules": true,
       "skipLibCheck": true,
       "paths": {
          "@/*": ["src/*"]
       },
       "types": ["vite/client", "element-plus/global"],
-      "forceConsistentCasingInFileNames": true
+      "forceConsistentCasingInFileNames": true,
+      "allowSyntheticDefaultImports": true
    },
    "include": [
       "vite.config.ts",
