@@ -135,10 +135,13 @@ export default {
             return this.basePath;
          }
 
+         if (this.basePath === "/") {
+            return this.basePath;
+         }
+
          return routePath.includes(this.basePath)
             ? routePath
-            : (this.basePath === "/" ? "" : this.basePath) +
-                 (routePath ? "/" + routePath : "");
+            : this.basePath + (routePath ? "/" + routePath : "");
       }
    }
 };
