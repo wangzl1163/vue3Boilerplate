@@ -109,7 +109,6 @@ const $_handleClick = (e: Event) => {
 
 .link-button {
    --hover-color: @color-primary-dark-4;
-   --focus-color: #0d4186;
    color: @color-primary;
 
    &:hover {
@@ -119,9 +118,9 @@ const $_handleClick = (e: Event) => {
       }
    }
    &:focus {
-      color: var(--focus-color);
+      color: @click-active-color;
       .href {
-         border-bottom: 1px solid var(--focus-color);
+         border-bottom: 1px solid @click-active-color;
       }
    }
    &.is-disabled {
