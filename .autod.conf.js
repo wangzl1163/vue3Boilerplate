@@ -63,6 +63,7 @@ module.exports = {
       "./test/fixtures",
       "./dist",
       "./public",
-      "./plugins"
+      "./plugins",
+      './*.config.js'
    ]
 };
