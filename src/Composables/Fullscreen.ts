@@ -19,7 +19,7 @@ export const useFullscreen = () => {
          } else {
             const el =
                typeof element === "string"
-                  ? document.querySelector(element) //document.getElementById(element)
+                  ? document.querySelector(element)
                   : element;
             el!.onfullscreenchange = () => {
                isFullscreen.value = !isFullscreen.value;
