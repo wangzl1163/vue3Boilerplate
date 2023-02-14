@@ -24,7 +24,6 @@ module.exports = {
       "file-saver",
       "jsencrypt",
       "moment",
-      "screenfull",
       "text-security",
       "vue",
       "vue-echarts",
@@ -64,6 +63,6 @@ module.exports = {
       "./dist",
       "./public",
       "./plugins",
-      './*.config.js'
+      "./*.config.js"
    ]
 };
