@@ -61,6 +61,7 @@ export const light: Record<string, string> = {
    "color-danger-dark-2": "#a1232c", // 点击
    "color-danger-dark-3": "#cb4348", // 悬浮
 
+   "text-color-header": "#1e2128",
    "text-color-primary": "#353840",
    "text-color-regular": "#595d67",
    "text-color-secondary": "#838793",
