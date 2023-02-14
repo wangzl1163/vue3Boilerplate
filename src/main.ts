@@ -24,7 +24,6 @@ import { globalProperties } from "./InjectionKeys";
 import App from "./App.vue";
 import "./Permission";
 import "text-security/text-security-disc.css";
-import "./Assets/Style/Tailwind.css";
 import "virtual:svg-icons-register";
 
 import type { AppContext } from "vue";
@@ -82,6 +81,7 @@ app.config.globalProperties.$confirm = ((
       appContext
    );
 }) as ElMessageBoxShortcutMethod;
+
 app.provide(globalProperties, app.config.globalProperties);
 
 initTheme();
