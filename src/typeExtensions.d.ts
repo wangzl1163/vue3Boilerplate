@@ -12,8 +12,6 @@ declare module "vue" {
 
    export interface ComponentCustomProperties {
       $styleVars: Record<string, string | number>;
-      $message: ElMessage;
-      $confirm: ElMessageBox;
    }
 }
 
@@ -23,6 +21,7 @@ declare module "vue-router" {
       order?: number;
       hidden?: boolean;
       level?: number;
+      alwaysShow?: boolean;
    }
    export interface RouteMeta {
       title: string;
