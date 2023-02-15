@@ -6,7 +6,7 @@
  * @LastEditors: 王占领
 -->
 <template>
-   <div :class="className" class="node-title-wrapper">
+   <div class="node-title-wrapper" :class="className">
       <div class="title-left">
          <slot name="title">
             <span
