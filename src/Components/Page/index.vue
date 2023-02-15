@@ -24,12 +24,16 @@
                      <SvgIcon icon="back"></SvgIcon>
                   </template>
                   <template #title>
-                     <span :style="{ color: $styleVars.colorPrimary }"
+                     <span
+                        class="-ml-0.5 inline-block"
+                        :style="{ color: $styleVars.colorPrimary }"
                         >返回</span
                      >
                   </template>
                   <template #content>
-                     <span class="text-base">{{ $route.meta.title }}</span>
+                     <slot name="header-content">
+                        <span class="text-base">{{ $route.meta.title }}</span>
+                     </slot>
                   </template>
                </el-page-header>
             </div>
@@ -242,10 +246,16 @@ const rowGutter = computed(() => props.gutter ?? gp.$styleVars.gutter);
    }
 }
 .back-header {
+   :deep(.el-page-header__header) {
+      line-height: inherit;
+   }
    :deep(.el-page-header__left) {
       margin-right: 17px;
       &::after {
          right: -9px;
+      }
+      & .el-divider--vertical {
+         margin: 0 8px;
       }
    }
    :deep(.el-page-header__content) {
