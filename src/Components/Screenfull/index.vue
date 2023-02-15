@@ -2,70 +2,35 @@
  * @Description  : 
  * @Author       : 王占领
  * @Date         : 2022-02-23 10:33:11
- * @LastEditTime : 2022-03-04 09:39:40
- * @LastEditors  : 王占领
+ * @LastEditTime: 2023-02-15 10:46:17
+ * @LastEditors: 王占领
 -->
 <template>
-   <div>
+   <div class="mr-2 w-9 text-center">
       <svg-icon
-         :icon="isFullscreen ? 'exit-fullscreen' : 'fullscreen'"
-         @click="click"
+         :icon="isFullscreen ? 'fullscreen-exit' : 'fullscreen'"
+         class="screenfull-svg"
+         @click="handleClick"
       />
    </div>
 </template>
 
-<script>
-import screenfull from "screenfull";
+<script lang="ts" setup name="Screenfull">
+import { useFullscreen } from "@/Composables/Fullscreen";
 
-export default {
-   name: "Screenfull",
-   data() {
-      return {
-         isFullscreen: false
-      };
-   },
-   mounted() {
-      this.init();
-   },
-   beforeUnmount() {
-      this.destroy();
-   },
-   methods: {
-      click() {
-         if (!screenfull.isEnabled) {
-            this.$message({
-               message: "你的浏览器当前版本不支持，请升级或更换浏览器后重试",
-               type: "warning"
-            });
-            return false;
-         }
+const { isFullscreen, fullscreen } = useFullscreen();
 
-         screenfull.toggle();
-      },
-      change() {
-         this.isFullscreen = screenfull.isFullscreen;
-      },
-      init() {
-         if (screenfull.enabled) {
-            screenfull.on("change", this.change);
-         }
-      },
-      destroy() {
-         if (screenfull.enabled) {
-            screenfull.off("change", this.change);
-         }
-      }
-   }
+const handleClick = () => {
+   fullscreen(document.documentElement);
 };
 </script>
 
-<style scoped>
+<style lang="less" scoped>
+@import url("@/Assets/Style/Variables.less");
 .screenfull-svg {
    display: inline-block;
    cursor: pointer;
-   fill: #5a5e66;
-   width: 20px;
-   height: 20px;
-   vertical-align: 10px;
+   fill: @color-white-85;
+   font-size: 20px;
 }
 </style>
