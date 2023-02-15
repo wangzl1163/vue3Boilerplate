@@ -2,26 +2,29 @@
  * @Description: 
  * @Author: 王占领
  * @Date: 2022-07-25 16:20:41
- * @LastEditTime: 2022-12-29 10:35:28
+ * @LastEditTime: 2023-02-03 14:36:58
  * @LastEditors: 王占领
 -->
 <template>
    <el-button
-      text
+      link
+      type="primary"
       v-if="buttonType === 'button'"
       v-bind="$attrs"
       class="link-button"
+      @click="emit('click', $event)"
    >
       <slot name="prefix-icon"></slot>
       <span class="href ml-1">{{ label }}</span>
       <slot name="suffix-icon"></slot>
    </el-button>
    <el-button
-      text
+      link
+      type="primary"
       v-if="buttonType === 'box'"
       v-bind="$attrs"
       class="link-button"
-      @click="$_handleClick($event)"
+      @click="$_handleClick"
    >
       <slot name="prefix-icon"></slot>
       <span class="href ml-1">{{ label }}</span>
@@ -50,6 +53,8 @@ import { createVNode } from "vue";
 import { useGlobal } from "@/Composables/Global";
 import { SvgIcon } from "@/Components/index";
 
+import type { messageType } from "element-plus";
+
 const gp = useGlobal();
 
 const props = withDefaults(
@@ -58,7 +63,7 @@ const props = withDefaults(
       title?: string;
       message?: string;
       buttonType?: string;
-      boxType?: string;
+      boxType?: messageType;
       boxWidth?: string;
       iconSize?: string;
       confirmButtonText?: string;
@@ -78,6 +83,7 @@ const props = withDefaults(
 const emit = defineEmits<{
    (e: "confirm", value: Event): void;
    (e: "cancel", value: Event): void;
+   (e: "click", value: Event): void;
 }>();
 
 const $_handleClick = (e: Event) => {
@@ -93,7 +99,7 @@ const $_handleClick = (e: Event) => {
       },
       confirmButtonText: props.confirmButtonText
    })
-      .then((res: PromiseFulfilledResult<Record<string, unknown>>) => {
+      .then((res) => {
          console.log("----- confirm res: ", res);
          emit("confirm", e);
       })
@@ -104,7 +110,7 @@ const $_handleClick = (e: Event) => {
 };
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
 @import "@/Assets/Style/Variables.less";
 
 .link-button {
@@ -118,7 +124,7 @@ const $_handleClick = (e: Event) => {
       }
    }
    &:focus {
-      color: @click-active-color;
+      color: @click-active-color !important;
       .href {
          border-bottom: 1px solid @click-active-color;
       }
@@ -139,5 +145,8 @@ const $_handleClick = (e: Event) => {
       width: v-bind("props.iconSize");
       height: v-bind("props.iconSize");
    }
+}
+.el-button.is-link:hover {
+   color: var(--hover-color);
 }
 </style>
