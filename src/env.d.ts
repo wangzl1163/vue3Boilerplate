@@ -33,23 +33,27 @@ declare module "@/Utils/HttpRequest" {
    import type { Response } from "@/Typings/Common";
 
    const request: {
-      $get: <U, T = Response<U>>(
+      $get: <U, isCustom = false>(
          url: string,
          data = {},
          options: AxiosRequestConfig = {}
-      ) => T extends undefined | null ? Promise<U> : Promise<T>;
-      $post: <U, T = Response<U>>(
+      ) => isCustom extends false ? Promise<Response<U>> : Promise<U>;
+
+      $post: <U, isCustom = false>(
          url: string,
          data = {},
          options: AxiosRequestConfig = {}
-      ) => T extends undefined | null ? Promise<U> : Promise<T>;
+      ) => isCustom extends false ? Promise<Response<U>> : Promise<U>;
+
       $put: <T>(
          url: string,
          data = {},
          options: AxiosRequestConfig = {}
       ) => Promise<Response<T>>;
+
       $delete: <T>(
          url: string,
+
          options: AxiosRequestConfig = {}
       ) => Promise<Response<T>>;
    };
