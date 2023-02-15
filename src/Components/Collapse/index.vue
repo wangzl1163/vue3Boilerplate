@@ -2,14 +2,14 @@
  * @Description: 折叠组件
  * @Author: 王占领
  * @Date: 2022-11-23 15:52:55
- * @LastEditTime: 2022-12-29 10:34:40
+ * @LastEditTime: 2023-01-31 17:08:30
  * @LastEditors: 王占领
 -->
 <template>
-   <div class="fold">
+   <div class="fold border border-solid border-line-lighter">
       <div class="fold-item" v-for="(item, i) in data">
          <div
-            class="fold-item__header text-primary-text flex w-full items-center"
+            class="fold-item__header flex w-full items-center bg-fill-lighter text-font-primary"
          >
             <template v-if="item.header"> {{ item.header }} </template>
             <template v-else>
@@ -23,25 +23,20 @@
                      {{ item.icon }}
                   </template>
                   <template v-else>
-                     <el-icon>
-                        <template
-                           v-if="
-                              currentItemIndex === i || expandedKeys.includes(i)
-                           "
-                        >
-                           <ArrowDownBold />
-                        </template>
-                        <template v-else>
-                           <ArrowRightBold />
-                        </template>
+                     <el-icon
+                        :class="
+                           currentItemIndex === i || expandedKeys.includes(i)
+                              ? 'fold-item__arrow is-active'
+                              : 'fold-item__arrow'
+                        "
+                     >
+                        <ArrowRightBold />
                      </el-icon>
                   </template>
                </div>
 
-               <div
-                  class="fold-item__title ml-2 flex-1 basis-fit text-me font-bold"
-               >
-                  <template v-if="typeof item.title === 'string'">
+               <div class="fold-item__title ml-2 flex-1 basis-fit font-bold">
+                  <template v-if="typeof item.title !== 'function'">
                      {{ item.title }}
                   </template>
                   <template v-else>
@@ -73,7 +68,7 @@ import type { NullableNumber } from "@/Typings/Common";
 
 type Item = {
    icon?: string | (() => VNode) | undefined;
-   title: string | (() => VNode);
+   title: string | number | (() => VNode);
    append?: (() => VNode) | undefined;
    header?: () => VNode | undefined;
    content: () => VNode;
@@ -130,11 +125,12 @@ watch(
 .fold {
    &-item {
       &__header {
-         padding: 10px 0;
+         padding: 8px 20px;
+         border-bottom: 1px solid @border-color-lighter;
       }
 
       &__content {
-         padding: 12px 0;
+         padding: 16px 20px;
       }
 
       &__icon {
@@ -142,8 +138,16 @@ watch(
          width: 24px;
          line-height: 28px;
          text-align: center;
-         border-radius: 6px;
+         border-radius: 14px;
          background-color: @fill-color-light;
+      }
+
+      &__arrow {
+         transition: transform 0.3s;
+
+         &.is-active {
+            transform: rotate(90deg);
+         }
       }
    }
 }
