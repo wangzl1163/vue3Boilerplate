@@ -9,7 +9,7 @@
    <div class="mr-2 w-9 text-center">
       <svg-icon
          :icon="isFullscreen ? 'fullscreen-exit' : 'fullscreen'"
-         class="screenfull-svg"
+         className="screenfull-svg"
          @click="handleClick"
       />
    </div>
