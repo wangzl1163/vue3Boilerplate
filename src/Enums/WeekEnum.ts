@@ -17,4 +17,4 @@ enum WeekEnum {
    "SAT"
 }
 
-export const week = useMakeEnum(WeekEnum, "weekday");
+export const Week = useMakeEnum(WeekEnum, "weekday");

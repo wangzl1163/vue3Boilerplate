@@ -5,9 +5,12 @@
  * @LastEditTime: 2022-11-03 16:43:19
  * @LastEditors: 王占领
  */
-enum firewall {
+
+import { useMakeEnum } from "./Composables/MakeEnum";
+
+enum Status {
    "开启中" = "active",
    "关闭中" = "inactive"
 }
 
-export { firewall };
+export const FirewallStatus = useMakeEnum(Status, "status");

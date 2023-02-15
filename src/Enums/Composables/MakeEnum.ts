@@ -2,24 +2,22 @@
  * @Description: 生成枚举
  * @Author: 王占领
  * @Date: 2022-10-08 15:13:02
- * @LastEditTime: 2022-11-28 19:37:16
+ * @LastEditTime: 2023-01-17 16:19:40
  * @LastEditors: 王占领
  */
 import type { SimpleObj } from "@/Typings/Common";
 
 type DefaultListKey = "list";
-type DefaultEnumKey = "status";
+
 type List = () => { value: string | number; label: string }[];
 type EnumData<T extends string, U = SimpleObj> = {
    [p in T | DefaultListKey]: p extends DefaultListKey ? List : U;
 };
 
-const key: DefaultEnumKey = "status";
-
-export function useMakeEnum<ReturnObjKey extends string = DefaultEnumKey>(
+export function useMakeEnum<ReturnObjKey extends string>(
    enumObj: SimpleObj,
-   enumKey: ReturnObjKey | DefaultEnumKey = key
-): EnumData<ReturnObjKey | DefaultEnumKey> {
+   enumKey: ReturnObjKey
+): EnumData<ReturnObjKey> {
    let list: List = function () {
       return Object.entries(enumObj).map((entry) => ({
          value: entry[1] as string | number,
@@ -39,8 +37,16 @@ export function useMakeEnum<ReturnObjKey extends string = DefaultEnumKey>(
       };
    }
 
+   const mapObj = values.every((val) => typeof val === "number")
+      ? enumObj
+      : Object.entries(enumObj).reduce((p, c) => {
+           p[c[0]] = c[1];
+           p[c[1]] = c[0];
+           return p;
+        }, {} as Record<string, string | number>);
+
    return {
-      [enumKey]: enumObj,
+      [enumKey]: mapObj,
       list
-   } as EnumData<ReturnObjKey | DefaultEnumKey>;
+   } as EnumData<ReturnObjKey>;
 }
