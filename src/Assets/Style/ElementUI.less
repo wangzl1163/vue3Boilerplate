@@ -38,10 +38,6 @@
    --el-table-text-color: @table-color-text;
    --el-table-header-text-color: @table-color-header-text;
 
-   & th.el-table__cell {
-      padding: 6px 0;
-      font-weight: 400;
-   }
    & .el-table__inner-wrapper::after {
       content: "";
       position: absolute;
@@ -58,9 +54,6 @@
       padding: 12px 40px;
    }
 
-   // 表格中特别处理一些组件样式
-   // & td.el-table__cell .cell {
-   // }
    & .el-button--text {
       padding: 0;
       height: min-content;
@@ -76,6 +69,16 @@
    --el-button-disabled-text-color: @disabled-text-color;
    --el-button-disabled-border-color: @border-color;
 
+   &:hover {
+      color: @btn-color-secondary-text-hover;
+      border-color: @btn-color-secondary-border-hover;
+      background-color: @btn-color-secondary-bg;
+   }
+   &:focus {
+      color: @click-active-color;
+      border-color: @click-active-color;
+   }
+
    &.el-button--primary[class$="el-button--primary"] {
       --el-button-hover-bg-color: var(--el-color-primary-light-3);
       --el-button-hover-border-color: var(--el-button-hover-bg-color);
@@ -87,26 +90,39 @@
       }
       &:focus {
          color: @color-white;
-         background-color: #0d4186;
-         border-color: #0d4186;
+         background-color: @click-active-color;
       }
    }
-   &:hover {
-      color: @btn-color-secondary-text-hover;
-      border-color: @btn-color-secondary-border-hover;
-      background-color: @btn-color-secondary-bg;
+
+   &.el-button--primary {
+      &.is-plain {
+         --el-button-bg-color: @color-white;
+         --el-button-border-color: @color-primary;
+
+         &:focus {
+            color: @color-white;
+            background-color: @click-active-color;
+         }
+      }
    }
-   &:focus {
-      color: @btn-color-secondary-text-active;
-      border-color: @btn-color-secondary-border-active;
-      background-color: @btn-color-secondary-bg-active;
+
+   &.is-disabled.is-plain {
+      background-color: @color-white;
+      border-color: @border-color;
    }
-   &.el-button--text {
-      &:hover,
-      &:focus,
-      &.is-disabled {
-         border-color: transparent;
-         background-color: transparent;
+
+   &.is-plain {
+      &:focus {
+         color: @click-active-color;
+      }
+   }
+
+   &.is-text:not(.is-disabled) {
+      &:focus {
+         background-color: @fill-color-dark;
+      }
+      &:hover {
+         background-color: @fill-color;
       }
    }
 }
@@ -208,8 +224,14 @@
 
 // tree
 .el-tree {
+   --el-tree-node-hover-bg-color: var(--el-fill-color);
+
    .el-tree-node__content {
       height: 36px;
+   }
+
+   &--highlight-current .el-tree-node.is-current > .el-tree-node__content {
+      background-color: @fill-color;
    }
 }
 
