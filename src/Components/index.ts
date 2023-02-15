@@ -9,6 +9,7 @@
 import type { App } from "vue";
 
 import SvgIcon from "./SvgIcon/index.vue";
+import ImgIcon from "./ImgIcon/index.vue";
 import Page from "./Page/index.vue";
 import BeCirclePlus from "./CirclePlus/index";
 import BeRemove from "./Remove/index";
@@ -26,10 +27,12 @@ import CardSelect from "./CardSelect/index.vue";
 import Anchor from "./Anchor/index.vue";
 import PrimaryPlainButton from "./PrimaryPlainButton/index.vue";
 import Collapse from "./Collapse/index.vue";
+import Radio from "./Radio/index.vue";
 
 // common组件用于全局注册
 const common = {
    SvgIcon,
+   ImgIcon,
    Page,
    BeCirclePlus,
    BeRemove,
@@ -43,7 +46,8 @@ const common = {
    DatetimePicker,
    FormWrapper,
    CardSelect,
-   PrimaryPlainButton
+   PrimaryPlainButton,
+   Radio
 };
 
 export default {
@@ -57,6 +61,7 @@ export default {
 // 所有组件
 export {
    SvgIcon,
+   ImgIcon,
    BeCirclePlus,
    BeRemove,
    ShortCut,
@@ -72,5 +77,6 @@ export {
    CardSelect,
    Anchor,
    PrimaryPlainButton,
-   Collapse
+   Collapse,
+   Radio
 };
