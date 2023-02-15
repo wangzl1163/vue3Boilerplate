@@ -12,11 +12,3 @@
       </slot>
    </el-button>
 </template>
-
-<style lang="less" scoped>
-@import "@/Assets/Style/Variables.less";
-.el-button--primary.is-plain {
-   --el-button-bg-color: @color-white;
-   --el-button-border-color: @color-primary;
-}
-</style>
