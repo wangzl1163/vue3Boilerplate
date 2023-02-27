@@ -15,6 +15,7 @@ module.exports = {
    test: ["test"],
    dep: [
       "@element-plus/icons-vue",
+      "@vueuse/core",
       "axios",
       "big-element",
       "crypto-js",
@@ -50,7 +51,9 @@ module.exports = {
       "tailwindcss",
       "typescript",
       "vite",
+      "vite-plugin-checker",
       "vite-plugin-compression",
+      "vite-plugin-remove-console",
       "vite-plugin-svg-icons",
       "vite-plugin-vue-setup-extend",
       "vue-eslint-parser",

@@ -14,6 +14,8 @@ import eslintPlugin from "@nabla/vite-plugin-eslint";
 import compressionPlugin from "vite-plugin-compression";
 import vueSetupExtendPlugin from "vite-plugin-vue-setup-extend";
 import gojsHackPlugin from "./plugins/GojsHack";
+import checkerPlugin from "vite-plugin-checker";
+import removeConsolePlugin from "vite-plugin-remove-console";
 import * as path from "path";
 
 import type { ClientRequest, IncomingMessage, ServerResponse } from "http";
@@ -58,7 +60,9 @@ export default defineConfig({
             cache: false
          }
       }),
-      gojsHackPlugin()
+      gojsHackPlugin(),
+      checkerPlugin({ vueTsc: true }),
+      removeConsolePlugin()
    ],
    server: {
       port: 10101,
