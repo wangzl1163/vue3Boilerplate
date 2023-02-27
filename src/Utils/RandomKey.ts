@@ -2,23 +2,46 @@
  * @Description  : random key
  * @Author       : 王占领
  * @Date         : 2022-02-23 11:42:19
- * @LastEditTime: 2022-12-26 15:27:12
+ * @LastEditTime: 2023-02-27 14:23:49
  * @LastEditors: 王占领
  */
 export default {
    /**
     * 生成一个由随机字母与数字组成的字符串——key
     *
-    * @param {Number} length key的长度，默认16位
+    * @param length key的长度，默认16位
+    * @param blackList 要屏蔽的字母或数字
     * @returns key值
     */
-   getKey(length = 16) {
+   getKey(length = 16, blackList: (string | number)[] = []) {
       let s = "";
-      const randomChar = function () {
+      const randomChar = function (): string {
          const n = Math.floor(Math.random() * 62);
-         if (n < 10) return n; // 1-10
-         if (n < 36) return String.fromCharCode(n + 55); // A-Z
-         return String.fromCharCode(n + 61); // a-z
+
+         // 1-10
+         if (n < 10) {
+            if (blackList.includes(n)) {
+               return randomChar();
+            }
+
+            return n.toString();
+         }
+
+         // A-Z
+         if (n < 36) {
+            if (blackList.includes(String.fromCharCode(n + 55))) {
+               return randomChar();
+            }
+
+            return String.fromCharCode(n + 55);
+         }
+
+         // a-z
+         if (blackList.includes(String.fromCharCode(n + 61))) {
+            return randomChar();
+         }
+
+         return String.fromCharCode(n + 61);
       };
 
       while (s.length < length) s += randomChar();
