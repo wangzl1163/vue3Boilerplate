@@ -8,8 +8,6 @@
 export {};
 
 declare module "vue" {
-   import type { ElMessage, ElMessageBox } from "element-plus";
-
    export interface ComponentCustomProperties {
       $styleVars: Record<string, string | number>;
    }
