@@ -211,7 +211,7 @@ module.exports = {
             fit: "fit-content"
          },
          borderRadius: ({ theme }) => ({
-            DEFAULT: "6px",
+            DEFAULT: "var(--border-radius-base)",
             ...theme("spacing")
          }),
          height: {

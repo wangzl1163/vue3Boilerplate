@@ -16,7 +16,8 @@ const common = {
    "color-white": "#ffffff",
    "color-white-85": "rgba(255, 255, 255, 0.85)",
    "color-white-60": "rgba(255, 255, 255, 0.6)",
-   "color-black": "#000000"
+   "color-black": "#000000",
+   "border-radius-base": "4px"
 };
 
 const maps: Record<string, Record<string, string | number>> = {
