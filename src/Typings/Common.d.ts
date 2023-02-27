@@ -40,11 +40,13 @@ export declare type ColumnAttrs<T = Obj> = {
    width?: string;
    minWidth?: string;
    sortable?: boolean;
+   align?: "left" | "center" | "right";
    columnAttrs?: {
       fixed?: "right" | "left";
       selectable?: (row: T, index?: number) => boolean;
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       sortMethod?: (a: any, b: any) => number;
+      index?: number | ((index: number) => unknown);
    };
    render?: (col: Column<T>) => void;
    renderHeader?: (col: Column<T>) => void;
