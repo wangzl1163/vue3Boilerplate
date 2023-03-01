@@ -4,7 +4,17 @@
          <SvgIcon icon="logo-title"></SvgIcon>
       </div>
       <div class="login__content">
-         <div class="login-logo"></div>
+         <picture style="width: 440px; height: 520px">
+            <source
+               srcset="@/Assets/Images/login_logo_2x.webp"
+               type="image/webp"
+            />
+            <img
+               src="@/Assets/Images/login_logo_2x.png"
+               alt="login logo"
+               class="h-full w-full"
+            />
+         </picture>
          <el-form
             ref="loginForm"
             :model="loginForm"
@@ -292,12 +302,7 @@ export default {
       width: 898px;
    }
 }
-.login-logo {
-   width: 440px;
-   height: 520px;
-   background-image: url("../../Assets/Images/login_logo_2x.png");
-   background-size: cover;
-}
+
 .title {
    margin-bottom: 22px;
    font-weight: 500;
