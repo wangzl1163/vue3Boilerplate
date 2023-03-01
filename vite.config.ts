@@ -16,9 +16,11 @@ import vueSetupExtendPlugin from "vite-plugin-vue-setup-extend";
 import gojsHackPlugin from "./plugins/GojsHack";
 import checkerPlugin from "vite-plugin-checker";
 import removeConsolePlugin from "vite-plugin-remove-console";
+import { ViteImageOptimizer } from "vite-plugin-image-optimizer";
 import * as path from "path";
 
 import type { ClientRequest, IncomingMessage, ServerResponse } from "http";
+import type { PluginOption } from "vite";
 
 const proxyRequestLog = (
    proxyReq: ClientRequest,
@@ -41,19 +43,22 @@ export default defineConfig({
       }
    },
    plugins: [
-      vue(),
-      vueJsx({}),
-      vueSetupExtendPlugin(), // name 可以写在 script 标签上
-      splitVendorChunkPlugin(),
+      vue(), // 官方插件，用于支持 Vue 的单文件组件写法即支持 .vue 格式的文件
+      vueJsx({}), // 官方插件，用于支持 Vue 组件中的 JSX 语法
+      splitVendorChunkPlugin(), // 官方插件，用于支持分割代码文件块
+      vueSetupExtendPlugin(), // 支持 script setup 语法下把组件的 name 写在 script 标签上
+      // 支持生成 js、css 文件的 gzip 压缩文件
       compressionPlugin({
          ext: ".gz",
          deleteOriginFile: false
       }),
+      // 支持 svg 文件作为图标
       createSvgIconsPlugin({
          // 配置svg文件所在的文件路径
          iconDirs: [path.resolve(__dirname, "src/Assets/Icons/svg")],
          symbolId: "icon-[dir]-[name]"
       }),
+      // 支持在 Vite 中使用 ESlint
       eslintPlugin({
          eslintOptions: {
             fix: true,
@@ -61,8 +66,9 @@ export default defineConfig({
          }
       }),
       gojsHackPlugin(),
-      checkerPlugin({ vueTsc: true }),
-      removeConsolePlugin()
+      checkerPlugin({ vueTsc: true }), // 支持实时类型检查并将错误呈现在页面中
+      removeConsolePlugin(), // 支持构建时删除 console 输出
+      ViteImageOptimizer() as unknown as PluginOption // 支持压缩 svg 和各种图片
    ],
    server: {
       port: 10101,
