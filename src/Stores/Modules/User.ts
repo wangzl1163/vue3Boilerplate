@@ -1,6 +1,7 @@
 import { defineStore } from "pinia";
 import md5 from "crypto-js/md5";
 import { JSEncrypt } from "jsencrypt";
+import router from "@/Router";
 import { USER_STORE_KEY } from "../StoreKeys";
 import { login, logout, getUserInfo, getToken } from "@/Apis/Login";
 import avatar from "@/Assets/Images/Avatar.png";
@@ -156,7 +157,15 @@ export const useUserStore = defineStore(USER_STORE_KEY, {
          this.avatar = avatar;
          this.userInfo = null;
 
+         // 重置路由
+         router.getRoutes().forEach((r) => {
+            router.removeRoute(r.name!);
+         });
          permissionStore.resetPermissionRoutes();
+         permissionStore.permissionRoutes.forEach((pr) => {
+            router.addRoute(pr);
+         });
+
          appStore.resetSidebar();
          settingStore.resetSetting();
 
