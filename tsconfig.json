@@ -25,6 +25,7 @@
       "allowSyntheticDefaultImports": true
    },
    "include": [
+      "auto-imports.d.ts", // 不填加此项 unplugin-auto-import 插件自动导入的模块的类型无法正确提示
       "vite.config.ts",
       "plugins/**/*.ts",
       "src/**/*.js",

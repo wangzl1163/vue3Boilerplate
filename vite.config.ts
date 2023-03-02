@@ -17,6 +17,7 @@ import gojsHackPlugin from "./plugins/GojsHack";
 import checkerPlugin from "vite-plugin-checker";
 import removeConsolePlugin from "vite-plugin-remove-console";
 import { ViteImageOptimizer } from "vite-plugin-image-optimizer";
+import AutoImportPlugin from "unplugin-auto-import/vite";
 import * as path from "path";
 
 import type { ClientRequest, IncomingMessage, ServerResponse } from "http";
@@ -68,7 +69,18 @@ export default defineConfig({
       gojsHackPlugin(),
       checkerPlugin({ vueTsc: true }), // 支持实时类型检查并将错误呈现在页面中
       removeConsolePlugin(), // 支持构建时删除 console 输出
-      ViteImageOptimizer() as unknown as PluginOption // 支持压缩 svg 和各种图片
+      ViteImageOptimizer() as unknown as PluginOption, // 支持压缩 svg 和各种图片
+      // 支持自动导入模块，在需要使用某模块时不需要再手动导入
+      AutoImportPlugin({
+         // 默认支持的文件格式为：.ts, .tsx, .js, .jsx, .vue
+         dts: true,
+         eslintrc: {
+            enabled: true // <-- this
+         },
+         imports: ["vue", "vue-router", "@vueuse/core", "pinia"],
+         vueTemplate: true,
+         cache: true
+      })
    ],
    server: {
       port: 10101,

@@ -5,7 +5,7 @@
  * @LastEditTime: 2022-12-30 10:24:30
  * @LastEditors: 王占领
  */
-import { createApp, createVNode } from "vue";
+
 import ElementPlus, { ElMessageBox } from "element-plus";
 import "element-plus/dist/index.css";
 import zhCn from "element-plus/es/locale/lang/zh-cn";

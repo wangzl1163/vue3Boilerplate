@@ -52,6 +52,7 @@ module.exports = {
       "svgo",
       "tailwindcss",
       "typescript",
+      "unplugin-auto-import",
       "vite",
       "vite-plugin-checker",
       "vite-plugin-compression",
