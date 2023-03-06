@@ -87,7 +87,7 @@ export default defineConfig({
             "pinia"
          ],
          vueTemplate: true,
-         cache: true
+         cache: false // 设置为true，在构建时不明原因报错
       })
    ],
    server: {
