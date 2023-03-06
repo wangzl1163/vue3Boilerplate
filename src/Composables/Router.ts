@@ -65,5 +65,3 @@ export function useRouteQuery<T extends string | string[]>(
       }
    });
 }
-
-export { useRoute, useRouter };

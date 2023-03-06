@@ -78,7 +78,14 @@ export default defineConfig({
          eslintrc: {
             enabled: true // <-- this
          },
-         imports: ["vue", "vue-router", "@vueuse/core", "pinia"],
+         imports: [
+            "vue",
+            "vue-router",
+            {
+               "@vueuse/core": ["useInterval"]
+            },
+            "pinia"
+         ],
          vueTemplate: true,
          cache: true
       })
