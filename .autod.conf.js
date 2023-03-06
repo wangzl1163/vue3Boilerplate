@@ -33,6 +33,8 @@ module.exports = {
       "pinia-plugin-persistedstate"
    ],
    devdep: [
+      "@commitlint/cli",
+      "@commitlint/config-conventional",
       "@nabla/vite-plugin-eslint",
       "@types/crypto-js",
       "@types/file-saver",
@@ -44,6 +46,7 @@ module.exports = {
       "eslint",
       "eslint-config-prettier",
       "fast-glob",
+      "husky",
       "less",
       "prettier",
       "prettier-plugin-packagejson",
