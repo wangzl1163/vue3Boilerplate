@@ -5,19 +5,24 @@
  * @LastEditTime: 2023-01-17 16:19:40
  * @LastEditors: 王占领
  */
-import type { SimpleObj } from "@/Typings/Common";
+// 把对象类型映射为拥有原对象的属性和以原属性的值作为属性名原属性名作为值的新属性的对象
+type OvonicObj<T> = {
+   [p in keyof T | T[keyof T]]: p extends keyof T
+      ? T[p]
+      : keyof { [k in keyof T as T[k] extends p ? k : never]: T[k] };
+};
 
 type DefaultListKey = "list";
 
 type List = () => { value: string | number; label: string }[];
-type EnumData<T extends string, U = SimpleObj> = {
+type EnumData<T extends string, U> = {
    [p in T | DefaultListKey]: p extends DefaultListKey ? List : U;
 };
 
-export function useMakeEnum<ReturnObjKey extends string>(
-   enumObj: SimpleObj,
+export function useMakeEnum<T, ReturnObjKey extends string>(
+   enumObj: T,
    enumKey: ReturnObjKey
-): EnumData<ReturnObjKey> {
+): EnumData<ReturnObjKey, OvonicObj<T>> {
    let list: List = function () {
       return Object.entries(enumObj).map((entry) => ({
          value: entry[1] as string | number,
@@ -43,10 +48,10 @@ export function useMakeEnum<ReturnObjKey extends string>(
            p[c[0]] = c[1];
            p[c[1]] = c[0];
            return p;
-        }, {} as Record<string, string | number>);
+        }, {});
 
    return {
       [enumKey]: mapObj,
       list
-   } as EnumData<ReturnObjKey>;
+   };
 }
