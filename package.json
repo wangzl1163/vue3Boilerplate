@@ -36,8 +36,8 @@
       "vue-router": "^4.1.6"
    },
    "devDependencies": {
-      "@commitlint/cli": "^17.6.1",
-      "@commitlint/config-conventional": "^17.6.1",
+      "@commitlint/cli": "^17.6.3",
+      "@commitlint/config-conventional": "^17.6.3",
       "@nabla/vite-plugin-eslint": "^1.5.0",
       "@types/crypto-js": "^4.1.1",
       "@types/file-saver": "^2.0.5",
@@ -47,7 +47,7 @@
       "@vitejs/plugin-vue-jsx": "^3.0.1",
       "autod": "^3.1.2",
       "autoprefixer": "^10.4.14",
-      "eslint": "^8.39.0",
+      "eslint": "^8.40.0",
       "eslint-config-prettier": "^8.8.0",
       "fast-glob": "^3.2.12",
       "husky": "^8.0.3",
@@ -60,7 +60,7 @@
       "tailwindcss": "^3.3.2",
       "typescript": "^5.0.4",
       "unplugin-auto-import": "^0.15.3",
-      "vite": "^4.3.4",
+      "vite": "^4.3.5",
       "vite-plugin-checker": "^0.6.0",
       "vite-plugin-compression": "^0.5.1",
       "vite-plugin-image-optimizer": "^1.1.4",
