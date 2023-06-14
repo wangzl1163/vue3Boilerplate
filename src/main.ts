@@ -1,11 +1,12 @@
 /*
  * @Description  :  app 入口
- * @Author       : 王占领
+ * @Author       : 
  * @Date         : 2022-02-23 10:33:12
  * @LastEditTime: 2022-12-30 10:24:30
- * @LastEditors: 王占领
+ * @LastEditors: 
  */
 
+import { createVNode } from 'vue';
 import ElementPlus, { ElMessageBox } from "element-plus";
 import "element-plus/dist/index.css";
 import zhCn from "element-plus/es/locale/lang/zh-cn";
