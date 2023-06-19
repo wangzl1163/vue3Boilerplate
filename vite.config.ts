@@ -67,7 +67,12 @@ export default defineConfig({
          }
       }),
       gojsHackPlugin(),
-      checkerPlugin({ typescript: true, enableBuild: false }), // 支持实时类型检查并将错误呈现在页面中
+      // 支持实时类型检查并将错误呈现在页面中
+      checkerPlugin({
+         typescript: true,
+         enableBuild: false,
+         overlay: { initialIsOpen: false }
+      }), 
       removeConsolePlugin(), // 支持构建时删除 console 输出
       ViteImageOptimizer() as unknown as PluginOption, // 支持压缩 svg 和各种图片
       // 支持自动导入模块，在需要使用某模块时不需要再手动导入
