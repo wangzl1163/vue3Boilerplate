@@ -63,8 +63,7 @@ module.exports = {
       "vite-plugin-remove-console",
       "vite-plugin-svg-icons",
       "vite-plugin-vue-setup-extend",
-      "vue-eslint-parser",
-      "vue-tsc"
+      "vue-eslint-parser"
    ],
    keep: ["jsencrypt"],
    exclude: [
