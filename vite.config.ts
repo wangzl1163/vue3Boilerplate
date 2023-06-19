@@ -6,19 +6,19 @@
  * @LastEditors: 王占领
  */
 
-import { defineConfig, HttpProxy, splitVendorChunkPlugin } from "vite";
+import eslintPlugin from "@nabla/vite-plugin-eslint";
 import vue from "@vitejs/plugin-vue";
 import vueJsx from "@vitejs/plugin-vue-jsx";
-import { createSvgIconsPlugin } from "vite-plugin-svg-icons";
-import eslintPlugin from "@nabla/vite-plugin-eslint";
+import * as path from "path";
+import AutoImportPlugin from "unplugin-auto-import/vite";
+import { defineConfig, HttpProxy, splitVendorChunkPlugin } from "vite";
+import checkerPlugin from "vite-plugin-checker";
 import compressionPlugin from "vite-plugin-compression";
+import { ViteImageOptimizer } from "vite-plugin-image-optimizer";
+import removeConsolePlugin from "vite-plugin-remove-console";
+import { createSvgIconsPlugin } from "vite-plugin-svg-icons";
 import vueSetupExtendPlugin from "vite-plugin-vue-setup-extend";
 import gojsHackPlugin from "./plugins/GojsHack";
-import checkerPlugin from "vite-plugin-checker";
-import removeConsolePlugin from "vite-plugin-remove-console";
-import { ViteImageOptimizer } from "vite-plugin-image-optimizer";
-import AutoImportPlugin from "unplugin-auto-import/vite";
-import * as path from "path";
 
 import type { ClientRequest, IncomingMessage, ServerResponse } from "http";
 import type { PluginOption } from "vite";
@@ -67,7 +67,7 @@ export default defineConfig({
          }
       }),
       gojsHackPlugin(),
-      checkerPlugin({ vueTsc: true }), // 支持实时类型检查并将错误呈现在页面中
+      checkerPlugin({ typescript: true, enableBuild: false }), // 支持实时类型检查并将错误呈现在页面中
       removeConsolePlugin(), // 支持构建时删除 console 输出
       ViteImageOptimizer() as unknown as PluginOption, // 支持压缩 svg 和各种图片
       // 支持自动导入模块，在需要使用某模块时不需要再手动导入
