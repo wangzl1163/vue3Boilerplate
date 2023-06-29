@@ -78,7 +78,7 @@ export default defineConfig({
       // 支持自动导入模块，在需要使用某模块时不需要再手动导入
       AutoImportPlugin({
          // 默认支持的文件格式为：.ts, .tsx, .js, .jsx, .vue
-         dirs: ["./src/Composables", "./src/Typings"], // ./src/Composables/** 写法：如果 Composables 下存在文件夹会搜索其下的文件夹中的模块即支持文件夹嵌套
+         dirs: ["./src/Composables"], // ./src/Composables/** 写法：如果 Composables 下存在文件夹会搜索其下的文件夹中的模块即支持文件夹嵌套
          dts: true,
          eslintrc: {
             enabled: true // <-- this
