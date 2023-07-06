@@ -45,7 +45,6 @@ module.exports = {
       "autoprefixer",
       "eslint",
       "eslint-config-prettier",
-      "fast-glob",
       "husky",
       "less",
       "prettier",
