@@ -1,12 +1,5 @@
-/*
- * @Description  :
- * @Author       : 王占领
- * @Date         : 2022-03-01 18:13:55
- * @LastEditTime: 2022-12-26 14:54:07
- * @LastEditors: 王占领
- */
-
 module.exports = {
+   root:true,
    env: {
       browser: true,
       node: true,
