@@ -71,7 +71,7 @@ http.interceptors.response.use(
                   : { value: ["", ""] };
                response.data.message.result =
                   monitor_data.data.result === null ||
-                  monitor_data.data.result.length === 0
+                     monitor_data.data.result.length === 0
                      ? [mockObj]
                      : monitor_data.data.result;
             }
@@ -112,8 +112,8 @@ http.interceptors.response.use(
                   exception(
                      err.response.status,
                      err.response.data.message ||
-                        err.response.data.errMsg ||
-                        "登录信息已过期",
+                     err.response.data.errMsg ||
+                     "登录信息已过期",
                      true
                   );
 
@@ -212,7 +212,12 @@ class Request {
                      return resolve(response);
                   })
                   .catch((err) => {
+                     postDataList = postDataList.filter(
+                        (pd) => pd !== err.config.data
+                     );
+
                      log(err);
+
                      return reject(err);
                   });
             });
