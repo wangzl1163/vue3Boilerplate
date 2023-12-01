@@ -13,7 +13,8 @@ const config = {
             "refactor",
             "revert",
             "style",
-            "test"
+            "test",
+            "release"
          ]
       ]
    }
