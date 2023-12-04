@@ -127,14 +127,11 @@ const serviceErrorMsgs: Record<string, Exception> = {
 
 const exception = function (
    errorCode: number | undefined,
-   errorMsg?: string,
-   isServiceError = true
+   errorMsg?: string
 ) {
    loadingBar.error();
-   const error = isServiceError
-      ? serviceErrorMsgs[errorCode + ""]
-      : errorMsgs[errorCode + ""];
 
+   const error = serviceErrorMsgs[errorCode + ""] ?? errorMsgs[errorCode + ""];
    if (error) {
       // 如果错误代码存在并且1级优先
       if (error.firstLevel) {

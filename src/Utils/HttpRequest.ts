@@ -113,8 +113,7 @@ http.interceptors.response.use(
                      err.response.status,
                      err.response.data.message ||
                      err.response.data.errMsg ||
-                     "登录信息已过期",
-                     true
+                     "登录信息已过期"
                   );
 
                   useUserStore().reset();
@@ -126,12 +125,11 @@ http.interceptors.response.use(
             } else {
                exception(
                   err.response.status,
-                  err.response.data.errMsg || err.response.data.message || "",
-                  true
+                  err.response.data.errMsg || err.response.data.message || ""
                );
             }
          } else {
-            exception(-504, "", false);
+            exception(-504, "");
          }
       }
 
