@@ -5,8 +5,9 @@ import loadingBar from "@/Plugins/LoadingBar/Index.js";
 
 import type { AxiosRequestConfig } from "axios";
 
-let hideError = false;
+const successCodes = [200, 0, '200'];
 const queue401 = [];
+let hideError = false;
 let controller = new AbortController();
 let postDataList: string[] = [];
 
@@ -62,7 +63,7 @@ http.interceptors.response.use(
          return Promise.resolve(response.data);
       }
 
-      if (response.data.code === 0 || response.data.code === 200) {
+      if (successCodes.includes(response.data.code)) {
          if (response.data.message) {
             const { monitor_data } = response.data.message;
             if (monitor_data) {
