@@ -1,9 +1,5 @@
 /*
  * @Description  : vite config
- * @Author       : 王占领
- * @Date         : 2022-02-23 10:33:12
- * @LastEditTime: 2022-12-29 14:22:43
- * @LastEditors: 王占领
  */
 
 import eslintPlugin from "@nabla/vite-plugin-eslint";
@@ -11,7 +7,7 @@ import vue from "@vitejs/plugin-vue";
 import vueJsx from "@vitejs/plugin-vue-jsx";
 import * as path from "path";
 import AutoImportPlugin from "unplugin-auto-import/vite";
-import { defineConfig, HttpProxy, splitVendorChunkPlugin } from "vite";
+import { defineConfig, HttpProxy, splitVendorChunkPlugin, loadEnv } from "vite";
 import checkerPlugin from "vite-plugin-checker";
 import compressionPlugin from "vite-plugin-compression";
 import { ViteImageOptimizer } from "vite-plugin-image-optimizer";
@@ -23,6 +19,15 @@ import gojsHackPlugin from "./plugins/GojsHack";
 import type { ClientRequest, IncomingMessage, ServerResponse } from "http";
 import type { PluginOption } from "vite";
 
+/**
+ * @description:加载指定模式（mode）下的 .env 文件，读取环境变量
+ * mode 通过 cross-env 在 scripts 中设置 mode variable 传入，mode 未传入时取 process.env.NODE_ENV 值
+ * 
+ * Vite 默认是不加载 .env 文件的，因为这些文件需要在执行完 Vite 配置后才能确定加载哪一个
+ * 这里使用 Vite 导出的 loadEnv 函数来加载指定的 .env 文件
+ * @see:https://cn.vitejs.dev/config/#using-environment-variables-in-config
+ */
+const env = loadEnv(process.env.mode ?? process.env.NODE_ENV, process.cwd());
 const proxyRequestLog = (
    proxyReq: ClientRequest,
    req: IncomingMessage,
@@ -31,13 +36,14 @@ const proxyRequestLog = (
 ) => {
    console.group("request info:");
    console.log("raw url: ", req.url);
-   // console.log("proxy url: ", "");
+   console.log("proxy url: ", proxyReq.path);
    console.log("method: ", req.method);
    console.groupEnd();
 };
 
 // https://cn.vitejs.dev/config/
 export default defineConfig({
+   base: env.VITE_BASE ?? "/", // "/" 为 vite 默认值
    resolve: {
       alias: {
          "@": path.resolve(__dirname, "./src")
@@ -98,8 +104,8 @@ export default defineConfig({
       port: 10101,
       strictPort: true,
       proxy: {
-         "/cdsi/api/v1/": {
-            target: "http://172.20.72.106:30771", // "http://172.20.14.86:8000"
+         [env.VITE_BASE_API]: {
+            target: env.VITE_PROXY_TARGET, // "http://172.20.14.86:8000"
             changeOrigin: true,
             configure: (proxy, options) => {
                // proxy 是 'http-proxy' 的实例
@@ -122,7 +128,7 @@ export default defineConfig({
             rewrite: (path) => path.replace(/^\/permission\/sys/, "")
          },
          "/socket.io": {
-            target: "ws://localhost:3000",
+            target: env.VITE_PROXY_TARGET_WS,
             ws: true
          }
       }

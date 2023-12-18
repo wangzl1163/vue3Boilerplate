@@ -43,6 +43,7 @@ module.exports = {
       "@vitejs/plugin-vue",
       "@vitejs/plugin-vue-jsx",
       "autoprefixer",
+      "cross-env",
       "eslint",
       "eslint-config-prettier",
       "husky",

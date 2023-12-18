@@ -13,7 +13,7 @@ let postDataList: string[] = [];
 
 // 创建axios实例
 const http = axios.create({
-   baseURL: "/cdsi/api/v1", // api的base_url
+   baseURL: import.meta.env.VITE_BASE_API, // api的base_url
    timeout: 60000 * 3 // 请求超时时间
 });
 
