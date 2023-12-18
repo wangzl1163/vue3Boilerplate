@@ -9,7 +9,7 @@ const successCodes = [200, 0, '200'];
 const queue401 = [];
 let hideError = false;
 let controller = new AbortController();
-let postDataList: string[] = [];
+let postRequestList: string[{ url: string, data: string }] = [];
 
 // 创建axios实例
 const http = axios.create({
@@ -193,11 +193,11 @@ class Request {
             return new Promise((resolve, reject) => {
                if (!this.url.includes("login")) {
                   const dataJson = JSON.stringify(this.data);
-                  if (postDataList.find((pd) => pd === dataJson)) {
-                     exception(undefined, "请不要提交重复的数据");
-                     return reject({ message: "请不要提交重复的数据" });
+                  if (postRequestList.find((pd) => pd.url === this.url && pd === dataJson)) {
+                     exception(undefined, '请不要提交重复的数据');
+                     return reject({ message: '请不要提交重复的数据' });
                   }
-                  postDataList.push(dataJson);
+                  postRequestList.push({ url: this.url, data: dataJson });
                }
 
                http
@@ -211,9 +211,7 @@ class Request {
                      return resolve(response);
                   })
                   .catch((err) => {
-                     postDataList = postDataList.filter(
-                        (pd) => pd !== err.config.data
-                     );
+                     postRequestList = postRequestList.filter((pd) => pd.url !== err.config.url || pd.data !== err.config.data);
 
                      log(err);
 
