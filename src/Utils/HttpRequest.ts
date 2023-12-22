@@ -326,7 +326,7 @@ class Request {
    }
 
    $clearPostData() {
-      postDataList = [];
+      postRequestList = [];
    }
 }
 
