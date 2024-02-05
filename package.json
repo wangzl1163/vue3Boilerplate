@@ -2,6 +2,7 @@
    "name": "vue3-vite-ts-pinia-tailwind-project",
    "version": "1.5.1",
    "private": true,
+   "type": "module",
    "scripts": {
       "autod": "autod",
       "build": "tsc --noEmit && vite build",

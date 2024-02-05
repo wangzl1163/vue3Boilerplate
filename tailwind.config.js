@@ -1,12 +1,4 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-/*
- * @Description: tailwindcss config file
- * @Author: 王占领
- * @Date: 2022-10-21 10:24:19
- * @LastEditTime: 2022-12-30 10:28:27
- * @LastEditors: 王占领
- */
-
 const colors = require("tailwindcss/colors");
 const defaultTheme = require("tailwindcss/defaultTheme");
 
