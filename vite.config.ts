@@ -22,7 +22,7 @@ import type { PluginOption } from "vite";
 /**
  * @description:加载指定模式（mode）下的 .env 文件，读取环境变量
  * mode 通过 cross-env 在 scripts 中设置 mode variable 传入，mode 未传入时取 process.env.NODE_ENV 值
- * 
+ *
  * Vite 默认是不加载 .env 文件的，因为这些文件需要在执行完 Vite 配置后才能确定加载哪一个
  * 这里使用 Vite 导出的 loadEnv 函数来加载指定的 .env 文件
  * @see:https://cn.vitejs.dev/config/#using-environment-variables-in-config
@@ -51,7 +51,7 @@ export default defineConfig({
    },
    plugins: [
       vue(), // 官方插件，用于支持 Vue 的单文件组件写法即支持 .vue 格式的文件
-      vueJsx({}), // 官方插件，用于支持 Vue 组件中的 JSX 语法
+      vueJsx(), // 官方插件，用于支持 Vue 组件中的 JSX 语法
       splitVendorChunkPlugin(), // 官方插件，用于支持分割代码文件块
       vueSetupExtendPlugin(), // 支持 script setup 语法下把组件的 name 写在 script 标签上
       // 支持生成 js、css 文件的 gzip 压缩文件
