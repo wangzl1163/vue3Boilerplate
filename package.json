@@ -1,6 +1,6 @@
 {
    "name": "vue3-vite-ts-pinia-tailwind-project",
-   "version": "1.5.1",
+   "version": "1.6.0",
    "private": true,
    "type": "module",
    "scripts": {
