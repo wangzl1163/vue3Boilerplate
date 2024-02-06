@@ -27,7 +27,10 @@ import type { PluginOption } from "vite";
  * 这里使用 Vite 导出的 loadEnv 函数来加载指定的 .env 文件
  * @see:https://cn.vitejs.dev/config/#using-environment-variables-in-config
  */
-const env = loadEnv(process.env.mode ?? process.env.NODE_ENV, process.cwd());
+const env = loadEnv(
+   process.env.mode ?? process.env.NODE_ENV ?? "development",
+   process.cwd()
+);
 const proxyRequestLog = (
    proxyReq: ClientRequest,
    req: IncomingMessage,

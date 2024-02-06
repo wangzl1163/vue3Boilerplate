@@ -10,10 +10,7 @@
       "sourceMap": true,
       "resolveJsonModule": true,
       "esModuleInterop": true,
-      "lib": [
-         "ESNext",
-         "DOM"
-      ],
+      "lib": ["ESNext", "DOM"],
       "allowJs": true,
       "checkJs": false,
       "outDir": "dist", // 设置allowJS为true后必须设置outDir，否则编译器会报错
@@ -21,14 +18,9 @@
       "isolatedModules": true,
       "skipLibCheck": true,
       "paths": {
-         "@/*": [
-            "src/*"
-         ]
+         "@/*": ["src/*"]
       },
-      "types": [
-         "vite/client",
-         "element-plus/global"
-      ],
+      "types": ["vite/client", "element-plus/global"],
       "forceConsistentCasingInFileNames": true,
       "allowSyntheticDefaultImports": true
    },
