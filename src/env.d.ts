@@ -27,35 +27,3 @@ declare module "*.vue" {
 
 declare module "big-element";
 declare module "big-element/packages/Components/ECharts";
-
-declare module "@/Utils/HttpRequest" {
-   import type { AxiosRequestConfig } from "axios";
-   import type { Response } from "@/Typings/Common";
-
-   const request: {
-      $get: <U, isCustom = false>(
-         url: string,
-         data = {},
-         options: AxiosRequestConfig = {}
-      ) => isCustom extends false ? Promise<Response<U>> : Promise<U>;
-
-      $post: <U, isCustom = false>(
-         url: string,
-         data = {},
-         options: AxiosRequestConfig = {}
-      ) => isCustom extends false ? Promise<Response<U>> : Promise<U>;
-
-      $put: <T>(
-         url: string,
-         data = {},
-         options: AxiosRequestConfig = {}
-      ) => Promise<Response<T>>;
-
-      $delete: <T>(
-         url: string,
-
-         options: AxiosRequestConfig = {}
-      ) => Promise<Response<T>>;
-   };
-   export default request;
-}

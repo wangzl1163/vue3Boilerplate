@@ -58,7 +58,7 @@ export const useUserStore = defineStore(USER_STORE_KEY, {
 
                   const tokenStore = useTokenStore();
                   const result = isAdmin
-                     ? tokenStore.storeToken(res.message.token)
+                     ? tokenStore.storeToken(res.data.token)
                      : getToken("1567055194267410433", res.data.code).then(
                           (res) => {
                              return tokenStore.storeToken(res.data);
@@ -95,18 +95,16 @@ export const useUserStore = defineStore(USER_STORE_KEY, {
                      this.avatar = avatar;
                      this.userInfo = res.data;
                   } else {
-                     const userInfo = res.message.user_info as unknown as {
+                     const userInfo = res.data.user_info as unknown as {
                         alias_name: string;
                      };
 
-                     avatar = !res.message.avatar
-                        ? this.avatar
-                        : res.message.avatar;
-                     this.roles = [res.message.UserType];
+                     avatar = !res.data.avatar ? this.avatar : res.data.avatar;
+                     this.roles = [res.data.UserType];
                      this.authType = "union_auth";
                      this.name = userInfo
                         ? userInfo.alias_name
-                        : res.message.Username;
+                        : res.data.Username;
                      this.avatar = avatar;
                      this.userInfo = userInfo || {};
                   }
