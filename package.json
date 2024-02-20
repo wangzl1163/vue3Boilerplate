@@ -15,7 +15,8 @@
       "prepare": "husky",
       "preview": "npm run build && vite preview --host",
       "preview:no-check": "npm run build:no-check && vite preview --host",
-      "preview:staging": "npm run build:staging && vite preview --host"
+      "preview:staging": "npm run build:staging && vite preview --host",
+      "type-check": "tsc --noEmit"
    },
    "dependencies": {
       "@element-plus/icons-vue": "^2.3.1",
