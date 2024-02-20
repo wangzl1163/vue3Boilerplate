@@ -3,14 +3,18 @@
       "strict": true,
       "target": "ESNext",
       "module": "ESNext",
-      "moduleResolution": "node",
+      "moduleResolution": "Bundler",
       "useDefineForClassFields": true,
       "composite": true,
+
+      // Required in Vue projects
       "jsx": "preserve",
+      "jsxImportSource": "vue",
+
       "sourceMap": true,
       "resolveJsonModule": true,
       "esModuleInterop": true,
-      "lib": ["ESNext", "DOM"],
+      "lib": ["ESNext", "DOM", "DOM.Iterable"],
       "allowJs": true,
       "checkJs": false,
       "outDir": "dist", // 设置allowJS为true后必须设置outDir，否则编译器会报错
@@ -20,7 +24,7 @@
       "paths": {
          "@/*": ["src/*"]
       },
-      "types": ["vite/client", "element-plus/global"],
+      "types": ["element-plus/global"],
       "forceConsistentCasingInFileNames": true,
       "allowSyntheticDefaultImports": true
    },
