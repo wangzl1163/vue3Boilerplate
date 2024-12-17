@@ -27,7 +27,7 @@
       "crypto-js": "^4.2.0",
       "echarts": "^5.5.0",
       "echarts-util": "^1.4.0",
-      "element-plus": "^2.7.3",
+      "element-plus": "^2.9.1",
       "file-saver": "^2.0.5",
       "jsencrypt": "3.2.1",
       "moment": "^2.30.1",
