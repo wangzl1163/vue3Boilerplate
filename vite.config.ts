@@ -138,6 +138,10 @@ export default defineConfig({
    },
    build: {
       reportCompressedSize: false
+   },
+   optimizeDeps: {
+      // 修复开发模式下，echarts 图表无法展示
+      exclude: ["echarts"]
    }
 });
 
